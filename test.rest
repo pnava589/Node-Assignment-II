@@ -1,1 +1,1 @@
-get http://localhost:8080/api/find/title/Trans
+get http://localhost:8080/api/movies/20

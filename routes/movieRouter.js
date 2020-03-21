@@ -7,9 +7,7 @@ const mongo = require('../test-mongo.js');
 router.get('/api/find/title/:substring', async(req,resp)=>{
     try{
         
-        console.log('gets here');
         const client = mongo.getClient();
-        console.log(`/${req.params.substring}/`);
         let result = await client.db("funwebdev").collection("movies").find({title: new RegExp(req.params.substring)});
         let list =[];
         if(result){
@@ -55,6 +53,30 @@ router.get('/api/find/title/:substring', async(req,resp)=>{
         }    
     });
 
+
+    router.get('/api/movies/:id', async(req,resp)=>{
+        try{
+            
+            const client = mongo.getClient();
+            let result = await client.db("funwebdev").collection("movies").findOne({id:parseInt(req.params.id)});
+            let list =[];
+            
+            if(result){
+                
+                list.push(result);
+                
+                resp.json(list);
+
+                
+            }
+            else{
+                resp.json({msg:`no matches for ${req.params.id}`});
+            }
+        }
+        catch(error){
+            console.log(error);
+            }  
+        });
 
         
         
