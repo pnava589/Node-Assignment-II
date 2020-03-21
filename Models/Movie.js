@@ -1,6 +1,7 @@
 const mongoose = require ('mongoose');
 
 const movieSchema = new mongoose.Schema({
+    _id:{type:mongoose.Schema.Types.ObjectId,ref:"Objectid"},
     id:Number,
     tmdb_id:Number,
     imdb_id:String,
@@ -20,13 +21,13 @@ const movieSchema = new mongoose.Schema({
         genres:[
             {
                 id:Number,
-                name:String
+                name:String,
             } 
         ],
         keywords:[
             {
                 id:Number,
-                name:String
+                name:String,
             }
         ]
     },
@@ -39,7 +40,7 @@ const movieSchema = new mongoose.Schema({
                gender:Number,
                id:Number,
                job:String,
-               name:String 
+               name:String,
             }
         ],
 
@@ -51,14 +52,14 @@ const movieSchema = new mongoose.Schema({
                 gender:Number,
                 id:Number,
                 name:String,
-                order:Number
+                order:Number,
             }
         ],
 
         companies:[
             {
                name:String,
-               id:Number 
+               id:Number, 
             }
         ],
 
@@ -73,4 +74,4 @@ const movieSchema = new mongoose.Schema({
 
 });
 
-module.exports=mongoose.model('Movie',movieSchema);
+module.exports=mongoose.model('movies',movieSchema);
