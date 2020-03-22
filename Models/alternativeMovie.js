@@ -5,7 +5,7 @@ const movieSchema = new mongoose.Schema({
     id: Number,
     tmdb_id: Number,
     imdb_id: String,
-    release_date: Date,
+    release_date: String,
     title: String,
     runtime: Number,
     revenue: Number,
@@ -20,4 +20,4 @@ const movieSchema = new mongoose.Schema({
 
 });
 
-module.exports=mongoose.model('Movie',movieSchema,'movies');
+module.exports=mongoose.model('Movie',movieSchema,'movies-brief');
