@@ -90,7 +90,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
                 });
         
             
-                router.get('/find/year/:y1/:y2', async(req,resp)=>{
+                router.get('/find/year/:y1/:y2', helper.ensureAuthenticated, async(req,resp)=>{
                     try{
                         const y1 = new Date(req.params.y1);
                         const y2 = new Date(req.params.y2);
