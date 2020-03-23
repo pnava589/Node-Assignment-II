@@ -72,15 +72,16 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
                 }  
             });
     
-            router.get('/find/:y1/:y2', helper.ensureAuthenticated, async(req,resp)=>{
+            router.get('/find/rating/:r1/:r2', helper.ensureAuthenticated, async(req,resp)=>{
                 try{
                     
-                   const matchMovies = await MovieModel.find({release_date:req.params.id});
+                   const matchMovies = await MovieModel.find({"ratings.average":
+                   {$gt:req.params.r1}, "ratings.average":{$lt:req.params.r2}});
                    if(matchMovies){
                        resp.json(matchMovies);
                    }
                    else{
-                       resp.json({message:"could not find movie"});
+                       resp.json({message:"could not find movies"});
                    }
                 }
                 catch(error){
@@ -88,7 +89,36 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
                     }  
                 });
         
+            
+                router.get('/find/year/:y1/:y2', async(req,resp)=>{
+                    try{
+                        const y1 = new Date(req.params.y1);
+                        const y2 = new Date(req.params.y2);
+                       const matchMovies = await MovieModel.aggregate([{
+                           $addFields:{
+                               convertedDate:{$toDate:'$release_date'}
+                           }
+                       },
+                    
+                    {
+                        '$match':
+                        {
+                            'convertedDate':
+                            {
+                                '$gte':y1,
+                                '$lte':y2
+                            }
+                        }
+                    }
+                    ]);
 
+                        resp.json(matchMovies);
+                    }
+                    catch(error){
+                        console.log(error);
+                        }  
+                    });
+            
     
 
 module.exports=router;
