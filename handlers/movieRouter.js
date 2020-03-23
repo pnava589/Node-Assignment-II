@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const MovieModel = require('../Models/movie.js');
 const BriefMovieModel = require('../Models/alternativeMovie');
+const helper = require('./helper.js');
 
 
-
-router.get('/api/find/title/:substring', async(req,resp)=>{
+router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)=>{
     try{
         
         const matchMovies = await MovieModel.find({title: new RegExp(req.params.substring)});
@@ -22,7 +22,7 @@ router.get('/api/find/title/:substring', async(req,resp)=>{
         }  
     });
 
-    router.get('/api/movies', async(req,resp)=>{
+    router.get('/movies', helper.ensureAuthenticated, async(req,resp)=>{
         try{
        
             const allMovies = await MovieModel.find({});
@@ -40,7 +40,7 @@ router.get('/api/find/title/:substring', async(req,resp)=>{
     });
 
 
-    router.get('/api/movies/:id', async(req,resp)=>{
+    router.get('/movies/:id', helper.ensureAuthenticated, async(req,resp)=>{
         try{
             
            const matchMovies = await MovieModel.find({id:req.params.id});
@@ -56,7 +56,7 @@ router.get('/api/find/title/:substring', async(req,resp)=>{
             }  
         });
 
-        router.get('/api/brief', async(req,resp)=>{
+        router.get('/brief', helper.ensureAuthenticated, async(req,resp)=>{
             try{
                 
                const matchMovies = await BriefMovieModel.find({});
@@ -72,7 +72,7 @@ router.get('/api/find/title/:substring', async(req,resp)=>{
                 }  
             });
     
-            router.get('/api/find/:y1/:y2', async(req,resp)=>{
+            router.get('/find/:y1/:y2', helper.ensureAuthenticated, async(req,resp)=>{
                 try{
                     
                    const matchMovies = await MovieModel.find({release_date:req.params.id});

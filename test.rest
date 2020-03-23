@@ -1,1 +1,12 @@
 get http://localhost:8080/api/find/title/Trans
+
+use to login before testing api
+
+http://localhost:8080/static/login.html
+
+
+.env extra fields
+LOGGING_FORMAT=dev
+SECRET=asdsadfd234sad324324sad
+KEY=sid
+PORT=8080
