@@ -42,8 +42,8 @@ nextApp.prepare().then(() => {
     //set up passport authentication
     require('./handlers/auth.js');
     //set up route handlers
-    const loginRoute = require('./handlers/loginRouter.js');
-    app.use('/', loginRoute);
+    //const loginRoute = require('./handlers/loginRouter.js');
+    //app.use('/', loginRoute);
 
     app.use('/api',require('./handlers/movieRouter.js'));
     //react router
