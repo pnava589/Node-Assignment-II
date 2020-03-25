@@ -5,7 +5,7 @@ export default function(props){
                     height: `100vh`,
                     marginBottom: `0px`
                  };
-    const creditStyle ={marginTop: `300px`};
+    const creditStyle ={marginTop: `250px`};
     return(
         <Jumbotron fluid style={style}>
             {props.children}

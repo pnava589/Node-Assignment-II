@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import { Row, Col, Button } from 'react-bootstrap';
+import Filter from '../components/filter';
 
 class Movies extends React.Component{
     constructor(props){
@@ -9,11 +9,7 @@ class Movies extends React.Component{
     render(){
         return(
             <Layout>
-                <Row>
-                    <Col className="justify-content-center">
-                        <Button className="rounded-0" block>Drop Down Filters</Button>
-                    </Col>
-                </Row>
+                <Filter/>
             </Layout>
         );
     }

@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import Header from './Header.js';
+import { Container } from 'react-bootstrap';
 export default function Layout(props){
+    const style = {overflow: 'hidden'};
     return(
         <div>
-            <Head>
+             <Head>
                 <title>JP Movies</title>
                 <link
                 rel="stylesheet"
@@ -13,10 +15,10 @@ export default function Layout(props){
                 />
                 <link href="https://use.fontawesome.com/releases/v5.12.1/css/svg-with-js.css" rel="stylesheet"></link>
             </Head>
-            <main>
-                <Header/>
+            <Header/>
+            <Container fluid className="p-0" style={style}>
                 {props.children}
-            </main>
+            </Container>
         </div>
     );
 }
