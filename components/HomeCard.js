@@ -1,5 +1,5 @@
 import { Card, Row, Col, Container, Form, Button, ButtonGroup } from "react-bootstrap";
-
+import Link from 'next/link';
 export default function(props){
     return(
         <Container>
@@ -20,7 +20,9 @@ export default function(props){
                                 <Button>Search Related Titles</Button>
                             </Col>
                             <Col sm={12} md={6} lg={6}>
-                                <Button >Search All Movies</Button>
+                                <Link href="/movies">
+                                    <Button>Search All Movies</Button>
+                                </Link>
                             </Col>
                         </Form.Group>
                     </Card.Body>
