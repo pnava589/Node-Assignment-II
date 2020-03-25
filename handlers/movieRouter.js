@@ -40,7 +40,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
     });
 
 
-    router.get('/movies/:id', helper.ensureAuthenticated, async(req,resp)=>{
+    router.get('/movies/:id', helper.ensureAuthenticated , async(req,resp)=>{
         try{
             
            const matchMovies = await MovieModel.find({id:req.params.id});
@@ -56,7 +56,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
             }  
         });
 
-        router.get('/brief', helper.ensureAuthenticated, async(req,resp)=>{
+        router.get('/brief', async(req,resp)=>{
             try{
                 
                const matchMovies = await BriefMovieModel.find({});

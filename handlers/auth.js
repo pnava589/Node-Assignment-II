@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const UserModel = require('../models/User.js');
+const UserModel = require('../Models/User.js');
 //maps the passport usr+passwd to the names of fields in database
 const localOpt = {
     usernameField : 'email',

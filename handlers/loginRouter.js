@@ -7,8 +7,8 @@ router.get('/', helper.ensureAuthenticated, (req, resp) => {
    resp.render('/home', {user: req.user});
 });
 
-router.get('/login', (req, resp) => {
-   resp.render('/login', {message: req.flash('error')} );
+router.get('/About', helper.ensureAuthenticated, (req, resp) => {
+   resp.render('/About', {user: req.user});
 });
 
 router.get('/logout', (req, resp) => {
