@@ -1,7 +1,7 @@
 import { Row, Col, Button, Container, Table } from 'react-bootstrap';
 import SingleMovie from './SingleMovie';
 
-class MovieList extends React.Component{
+class MoviesList extends React.Component{
     constructor(props){
         super(props);
         this.state={movies:this.props.data};
@@ -9,10 +9,10 @@ class MovieList extends React.Component{
     }
 
     render(){
-        //console.log('this props: '+this.props.data[0].title);
-        //this.props.data.forEach((item)=>{
-            //console.log('title: '+item.title+ ' | ratings: '+item.ratings.average+ ' | year: '+item.release_date);
-        //})
+        console.log('this props: '+this.props.data[0].title);
+        this.props.data.forEach((item)=>{
+            console.log('title: '+item.title+ ' | ratings: '+item.ratings.average+ ' | year: '+item.release_date);
+        })
         return(
             <div>
 

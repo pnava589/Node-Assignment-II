@@ -1,6 +1,16 @@
 import { Card, Row, Col, Container, Form, Button, ButtonGroup } from "react-bootstrap";
 import Link from 'next/link';
-export default function(props){
+class HomeCard extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={value:''};
+    }
+
+
+    onChange=(e)=>{
+        this.setState({value:e.target.value});
+    }
+    render(){
     return(
         <Container>
             <Row className="justify-content-center">
@@ -12,12 +22,12 @@ export default function(props){
                                 Title
                             </Form.Label>
                             <Col sm={12} md={9} lg={10}>
-                                <Form.Control type="text" placeholder="E.g. John Wick"/>
+                                <Form.Control type="text" placeholder="E.g. John Wick" onChange={this.onChange}/>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="ml-lg-5 pl-lg-1">
                             <Col sm={12} md={6} lg={6}>
-                                <Button>Search Related Titles</Button>
+                                <Button disabled={!this.state.value} >Search Related Titles</Button>
                             </Col>
                             <Col sm={12} md={6} lg={6}>
                                 <Link href="/movies">
@@ -30,4 +40,6 @@ export default function(props){
             </Row>
         </Container>
     );
+  }
 }
+export default HomeCard;

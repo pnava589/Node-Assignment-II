@@ -22,7 +22,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
         }  
     });
 
-    router.get('/movies', helper.ensureAuthenticated, async(req,resp)=>{
+    router.get('/movies', async(req,resp)=>{
         try{
        
             const allMovies = await MovieModel.find({});
