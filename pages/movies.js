@@ -1,5 +1,6 @@
 import Layout from '../components/Layout';
 import Filter from '../components/filter';
+import MovieList from '../components/movieList';
 
 class Movies extends React.Component{
     constructor(props){
@@ -10,6 +11,7 @@ class Movies extends React.Component{
         return(
             <Layout>
                 <Filter/>
+                <MovieList/>
             </Layout>
         );
     }

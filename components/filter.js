@@ -1,5 +1,4 @@
 import { Row, Col, Button, Container } from 'react-bootstrap';
-import FilterAccordian from './filterAccordian';
 import FilterDropDown from './FilterDropDown';
 class Filter extends React.Component{
     constructor(props){
@@ -12,11 +11,6 @@ class Filter extends React.Component{
                 <Row>
                     <Col lg={12} className="m-0 p-0">
                         <FilterDropDown/>
-                    </Col>
-                </Row>
-                <Row className="justify-content-center">
-                    <Col sm={12}>
-                        
                     </Col>
                 </Row>
             </Container>
