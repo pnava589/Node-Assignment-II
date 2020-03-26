@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Table } from 'react-bootstrap';
 class MovieList extends React.Component{
     constructor(props){
         super(props);
@@ -11,7 +11,9 @@ class MovieList extends React.Component{
                     <h3>Movies</h3>
                     </Col>
                 </Row>
-            </Container>
+                </Container>
+
+    
         );
     }
 }
