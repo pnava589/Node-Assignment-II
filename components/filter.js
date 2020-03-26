@@ -1,4 +1,6 @@
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Container } from 'react-bootstrap';
+import FilterAccordian from './filterAccordian';
+import FilterDropDown from './FilterDropDown';
 class Filter extends React.Component{
     constructor(props){
         super(props);
@@ -6,13 +8,18 @@ class Filter extends React.Component{
     }
     render(){
         return(
-            <div>
+            <Container fluid className="bg-secondary">
                 <Row>
-                    <Col className="justify-content-center">
-                        <Button className="rounded-0" block>Drop Down Filters</Button>
+                    <Col lg={12} className="m-0 p-0">
+                        <FilterDropDown/>
                     </Col>
                 </Row>
-            </div>
+                <Row className="justify-content-center">
+                    <Col sm={12}>
+                        
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
