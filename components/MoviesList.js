@@ -9,10 +9,12 @@ class MoviesList extends React.Component{
     }
 
     render(){
-        console.log('this props: '+this.props.data[0].title);
+        /*console.log('this props: '+this.props.data[0].title);
         this.props.data.forEach((item)=>{
             console.log('title: '+item.title+ ' | ratings: '+item.ratings.average+ ' | year: '+item.release_date);
-        })
+        })*/
+        console.log(this.props.data);
+        
         return(
             <div>
 
@@ -27,7 +29,7 @@ class MoviesList extends React.Component{
                 </thead>
 
                 <tbody>
-                    {this.state.movies.map(item =>{
+                {this.props.data.map(item =>
                        <tr>
                        <td>{item.title}</td>
                         <td>{item.release_date}</td>
@@ -35,7 +37,7 @@ class MoviesList extends React.Component{
                         <td>Heart</td>
                         <td>View</td>
                         </tr>
-                    })}
+                    )}
                 </tbody>
 
             </Table>

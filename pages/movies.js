@@ -13,6 +13,8 @@ class Movies extends React.Component{
         const data = await res.json();
         return {data};
     }
+
+    
     //add cards for each movie and make the filter a dropdown, maybe accordian?
     render(){
         const {data} = this.props;
