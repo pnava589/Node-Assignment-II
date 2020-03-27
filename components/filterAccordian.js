@@ -1,5 +1,61 @@
-import { Accordion, Card, Button } from "react-bootstrap";
-
+import { Accordion, Card, Button, FormGroup, Row, Form, Col } from "react-bootstrap";
+import RangeInput from '../components/RangInput.js';
+import YearInput from "./YearInput.js";
+import TitleInput from "./TitleInput.js";
+const TitleFilter =()=>{
+    return(
+        <Accordion>
+            <Card>
+                <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                        Title
+                    </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                    <Card.Body>
+                        <TitleInput controlId="formTitle"/>
+                    </Card.Body>
+                </Accordion.Collapse>
+            </Card>
+        </Accordion>
+    );
+};
+const YearFilter=()=>{
+    return(
+        <Accordion>
+            <Card>
+                <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link"  eventKey="1">
+                        Year
+                    </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="1">
+                    <Card.Body>
+                       <YearInput controlId="formYear"/>
+                    </Card.Body>
+                </Accordion.Collapse>
+            </Card>
+        </Accordion>
+    );
+}
+const RatingFilter =()=>{
+    return(
+        <Accordion>
+            <Card>
+                <Card.Header>
+                    <Accordion.Toggle as={Button} variant="link"  eventKey="2">
+                            Rating
+                    </Accordion.Toggle>        
+                </Card.Header>
+                <Accordion.Collapse eventKey="2">
+                    <Card.Body>
+                        <RangeInput name="Rating" title="Under" controlId="formRating"/>
+                    </Card.Body>
+                </Accordion.Collapse>
+            </Card>
+        </Accordion>
+    )
+}
 class FilterAccordian extends React.Component{
     constructor(props){
         super(props);
@@ -7,48 +63,9 @@ class FilterAccordian extends React.Component{
     render(){
         return(
             <Card>
-            <Accordion>
-                <Card>
-                    <Card.Header>
-                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                            Title
-                        </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                        <Card.Body>
-                            Title Input
-                        </Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-            </Accordion>
-             <Accordion>
-                <Card>
-                    <Card.Header>
-                        <Accordion.Toggle as={Button} variant="link"  eventKey="1">
-                                Year
-                        </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="1">
-                        <Card.Body>
-                            Year Input
-                        </Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-                </Accordion>
-                 <Accordion>
-                <Card>
-                    <Card.Header>
-                        <Accordion.Toggle as={Button} variant="link"  eventKey="2">
-                                Rating
-                        </Accordion.Toggle>        
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="2">
-                        <Card.Body>
-                            Rating Input
-                        </Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-            </Accordion>
+               <TitleFilter/>
+               <YearFilter/>
+               <RatingFilter/>
             </Card>
         );
     }

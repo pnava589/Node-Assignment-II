@@ -13,7 +13,7 @@ class MoviesList extends React.Component{
         this.props.data.forEach((item)=>{
             console.log('title: '+item.title+ ' | ratings: '+item.ratings.average+ ' | year: '+item.release_date);
         })*/
-        console.log(this.props.data);
+        //console.log(this.props.data);
         
         return(
             <div>
