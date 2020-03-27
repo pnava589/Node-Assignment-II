@@ -11,7 +11,7 @@ class Movies extends React.Component{
     static async getInitialProps(){
         const res = await fetch('http://localhost:8080/api/movies');
         const data = await res.json();
-        return {data};
+        return {data}
     }
 
     

@@ -1,4 +1,8 @@
 import { Row, Col, Button, Container, Table } from 'react-bootstrap';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import {library} from '@fortawesome/fontawesome-svg-core';
+library.add(fas);
 
 class SingleMovie extends React.Component{
     constructor(props){
@@ -7,15 +11,15 @@ class SingleMovie extends React.Component{
 
     render(){
         console.log('does it get here?');
-        console.log(this.props);
-        console.log('title: '+this.props.title + " year: "+this.props.release_date);
+        const imgUrl = "https://image.tmdb.org/t/p/w92"+this.props.poster;
         return(
             <tr>
-                <td>{this.props.title}</td>
-                <td>{this.props.release_date}</td>
-                <td>{this.props.rating}</td>
-                <td>heart</td>
-                <td>View</td>
+                <td><img src={imgUrl}/></td>
+                <td className='text-center'>{this.props.title}</td>
+                <td>{this.props.year}</td>
+                <td className='text-center'>{this.props.rating}</td>
+                <td ><Button className="btn btn-primary"><FontAwesomeIcon icon='thumbs-up'/></Button></td>
+                <td><Button className='btn btn-primary'>View</Button></td>
             </tr>
         )
     }
