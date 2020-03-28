@@ -9,12 +9,6 @@ class MoviesList extends React.Component{
     }
 
     render(){
-        /*console.log('this props: '+this.props.data[0].title);
-        this.props.data.forEach((item)=>{
-            console.log('title: '+item.title+ ' | ratings: '+item.ratings.average+ ' | year: '+item.release_date);
-        })*/
-        //console.log(this.props.data);
-        console.log(typeof(this.props.data[0].release_date));
         
         return(
             <Container>
@@ -22,12 +16,10 @@ class MoviesList extends React.Component{
             <br/>
             
             <Row>
-                <Col>
-                
-                </Col>
+               
                 <Col>
                   <Container style={{height: "40em",overflowY:'scroll'}}>
-                    <Table className='col ml-5' >   
+                    <Table >   
                         <thead>
                             <tr>
                                 <th></th>
