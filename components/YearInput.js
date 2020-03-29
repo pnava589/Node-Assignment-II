@@ -3,27 +3,50 @@ class YearInput extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            after: true,
-            before: true,
+            after: '',
+            before: '',
+            disabled: true,
+            afterDisabled: true,
+            beforeDisabled: true
         }
     }
     onClick=(e)=>{
         if(e.target.id=="between"){
             this.setState({
-                after: false,
-                before: false
+                afterDisabled: false,
+                beforeDisabled: false,
+                disabled: false,
+                before: 2010,
+                after: 2002
             });
         } else if(e.target.id=="after"){
             this.setState({
-                after: false,
-                before: true
+                afterDisabled: false,
+                beforeDisabled: true,
+                disabled: false,
+                before: '',
+                after: 2002
             });
         }else if(e.target.id=="before"){
             this.setState({
-                after: true,
-                before: false
+                afterDisabled: true,
+                beforeDisabled: false,
+                disabled: false,
+                before: 2010,
+                after: ''
             });
         }
+    }
+    onChange=(e)=>{
+        if(e.target.value!=''){
+            this.setState({disabled: false});
+        }else{
+            this.setState({disabled: true});
+        }
+        this.setState({[e.target.name]: e.target.value});
+    }
+    handleSearch=(e)=>{
+
     }
     render(){
         return(
@@ -38,15 +61,15 @@ class YearInput extends React.Component{
                         <Form.Check type="radio" id="between" name="year" label="Between" onClick={this.onClick}/>
                     </Col>
                     <Col sm={10} md={10} lg={3} >
-                        <Form.Control disabled={this.state.after} type="number" name="after"/>
+                        <Form.Control disabled={this.state.afterDisabled} onChange={this.onChange} type="number" name="after" value={this.state.after}/>
                     </Col>
                     <Col sm={10} md={10} lg={3} >
-                        <Form.Control disabled={this.state.before} type="number" name="before"/>
+                        <Form.Control disabled={this.state.beforeDisabled} onChange={this.onChange} type="number" name="before" value={this.state.before}/>
                     </Col>
                 </Form.Row>
                 <Form.Row>
                     <Col>
-                        <Button >Search</Button>
+                        <Button disabled={this.state.disabled} onClick={this.handleSearch}>Search</Button>
                     </Col>
                 </Form.Row>
             </Form.Group>

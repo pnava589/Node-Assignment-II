@@ -13,7 +13,7 @@ class FilterDropDown extends React.Component{
                     Filters
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="p-0 col-lg-8 col-sm-8">
-                    <FilterAccordian/>
+                    <FilterAccordian filterFunction={this.props.filterFunction}/>
                     <Dropdown.Item eventKey='1' as={Card.Footer} className="justify-content-between">
                         <Button>Close</Button>
                     </Dropdown.Item>

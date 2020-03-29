@@ -10,7 +10,7 @@ class Filter extends React.Component{
             <Container fluid className="bg-secondary">
                 <Row>
                     <Col lg={12} className="m-0 p-0">
-                        <FilterDropDown/>
+                        <FilterDropDown filterFunction={this.props.filterFunction}/>
                     </Col>
                 </Row>
             </Container>

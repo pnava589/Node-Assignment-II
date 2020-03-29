@@ -2,7 +2,7 @@ import { Accordion, Card, Button, FormGroup, Row, Form, Col } from "react-bootst
 import RangeInput from '../components/RangInput.js';
 import YearInput from "./YearInput.js";
 import TitleInput from "./TitleInput.js";
-const TitleFilter =()=>{
+const TitleFilter =(props)=>{
     return(
             <Card>
                 <Card.Header>
@@ -12,13 +12,16 @@ const TitleFilter =()=>{
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
                     <Card.Body>
-                        <TitleInput controlId="formTitle"/>
+                        <TitleInput 
+                        controlId="formTitle"
+                        filterFunction={props.filterFunction}
+                        />
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
     );
 };
-const YearFilter=()=>{
+const YearFilter=(props)=>{
     return(
             <Card>
                 <Card.Header>
@@ -28,13 +31,16 @@ const YearFilter=()=>{
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
                     <Card.Body>
-                       <YearInput controlId="formYear"/>
+                       <YearInput 
+                       controlId="formYear"
+                       filterFunction={props.filterFunction}
+                       />
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
     );
 }
-const RatingFilter =()=>{
+const RatingFilter =(props)=>{
     return(
             <Card>
                 <Card.Header>
@@ -44,7 +50,12 @@ const RatingFilter =()=>{
                 </Card.Header>
                 <Accordion.Collapse eventKey="2">
                     <Card.Body>
-                        <RangeInput name="Rating" title="Under" controlId="formRating"/>
+                        <RangeInput 
+                        name="Rating" 
+                        title="Under" 
+                        controlId="formRating"
+                        filterFunction={props.filterFunction}
+                        />
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
@@ -58,9 +69,9 @@ class FilterAccordian extends React.Component{
         return(
             <Accordion>
                 <Card>
-                    <TitleFilter/>
-                    <YearFilter/>
-                    <RatingFilter/>
+                    <TitleFilter filterFunction={this.props.filterFunction}/>
+                    <YearFilter filterFunction={this.props.filterFunction}/>
+                    <RatingFilter filterFunction={this.props.filterFunction}/>
                 </Card>
             </Accordion>
         );
