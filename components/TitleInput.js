@@ -1,4 +1,4 @@
-import { FormGroup, Row, Col, Form} from 'react-bootstrap'
+import { Button, Col, Form} from 'react-bootstrap'
 class TitleInput extends React.Component{
     constructor(props){
         super(props);
@@ -12,6 +12,11 @@ class TitleInput extends React.Component{
                     </Form.Label>
                     <Col sm={10} md={10} lg={8}>
                         <Form.Control type="text" name="title" placeholder="John Whick"/>
+                    </Col>
+                </Form.Row>
+                <Form.Row>
+                    <Col>
+                        <Button type="submit">Search</Button>
                     </Col>
                 </Form.Row>
             </Form.Group>

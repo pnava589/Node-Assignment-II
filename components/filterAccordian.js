@@ -4,7 +4,6 @@ import YearInput from "./YearInput.js";
 import TitleInput from "./TitleInput.js";
 const TitleFilter =()=>{
     return(
-        <Accordion>
             <Card>
                 <Card.Header>
                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -17,12 +16,10 @@ const TitleFilter =()=>{
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
-        </Accordion>
     );
 };
 const YearFilter=()=>{
     return(
-        <Accordion>
             <Card>
                 <Card.Header>
                     <Accordion.Toggle as={Button} variant="link"  eventKey="1">
@@ -35,12 +32,10 @@ const YearFilter=()=>{
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
-        </Accordion>
     );
 }
 const RatingFilter =()=>{
     return(
-        <Accordion>
             <Card>
                 <Card.Header>
                     <Accordion.Toggle as={Button} variant="link"  eventKey="2">
@@ -53,7 +48,6 @@ const RatingFilter =()=>{
                     </Card.Body>
                 </Accordion.Collapse>
             </Card>
-        </Accordion>
     )
 }
 class FilterAccordian extends React.Component{
@@ -62,11 +56,13 @@ class FilterAccordian extends React.Component{
     }
     render(){
         return(
-            <Card>
-               <TitleFilter/>
-               <YearFilter/>
-               <RatingFilter/>
-            </Card>
+            <Accordion>
+                <Card>
+                    <TitleFilter/>
+                    <YearFilter/>
+                    <RatingFilter/>
+                </Card>
+            </Accordion>
         );
     }
 }

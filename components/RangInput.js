@@ -1,8 +1,34 @@
-import { FormGroup, Row, Col, Form} from 'react-bootstrap'
+import { Col, Form, Button} from 'react-bootstrap'
 class RangeInput extends React.Component{
     constructor(props){
         super(props);
-        this.state = {value: '5'};
+        this.state = {
+            over: '5',
+            under: '5', 
+            underDisabled: true, 
+            overDisabled: true
+        };
+    }
+    onClick=(e)=>{
+        if(e.target.id =='under'){
+            this.setState({
+                underDisabled: false,
+                overDisabled: true
+            });
+        } else if(e.target.id =='over'){
+            this.setState({
+                underDisabled: true,
+                overDisabled: false
+            });
+        } else if(e.target.id =='between'){
+            this.setState({
+                underDisabled: false,
+                overDisabled: false
+            });
+        } 
+    }
+    handeleChange=(e)=>{
+       this.setState({[e.target.name]: e.target.value});
     }
     render(){
         return(
@@ -12,48 +38,30 @@ class RangeInput extends React.Component{
                             Ratings
                     </Form.Label>
                     <Col sm={10} md={10} lg={2}>
-                        <Form.Check type="radio" id="under" name="rating" label="Under"/>
-                        <Form.Check type="radio" id="over" name="rating" label="Over"/>
-                        <Form.Check type="radio" id="between" name="rating" label="Between"/>
+                        <Form.Check type="radio" id="under" name="rating" label="Under" onClick={this.onClick}/>
+                        <Form.Check type="radio" id="over" name="rating" label="Over" onClick={this.onClick}/>
+                        <Form.Check type="radio" id="between" name="rating" label="Between" onClick={this.onClick}/>
                     </Col>
                     <Col sm={10} md={10} lg={3} >
-                        <Form.Control type="range" min="1" max="10" name="over"/>
+                        <Form.Control type="range" min="1" max="10" name="over" disabled={this.state.overDisabled} onChange={this.handeleChange}/>
                     </Col>
                     <Form.Label column  sm={2} md={2} lg={1} className="text-center align-text-middle">
-                        {this.state.value}
+                        {this.state.over}
                     </Form.Label>
                     <Col sm={10} md={10} lg={3} >
-                        <Form.Control type="range" min="1" max="10" name="under"/>
+                        <Form.Control type="range" min="1" max="10" name="under" disabled={this.state.underDisabled} onChange={this.handeleChange}/>
                     </Col>
                     <Form.Label column  sm={2} md={2} lg={1} className="text-center align-text-middle">
-                        {this.state.value}
+                        {this.state.under}
                     </Form.Label>
+                </Form.Row>
+                <Form.Row>
+                    <Col>
+                        <Button >Search</Button>
+                    </Col>
                 </Form.Row>
             </Form.Group>
         );
     }
 }
 export default RangeInput;
-/*
-render(){
-        return(
-            <Form.Group controlId={this.props.controlId}>
-                <Form.Row>
-                    <Col sm={2} md={2} lg={1}>
-                        <Form.Control type="radio" id="under" name="rating"/>
-                    </Col>
-                        <Form.Label column sm={4} md={4} lg={2} className="text-left align-middle align-text-middle">
-                            {this.props.title}
-                        </Form.Label>
-                    
-                    <Col sm={4} md={4} lg={6} >
-                        <Form.Control type="range" min="1" max="10" name={this.props.name}/>
-                    </Col>
-                    <Form.Label column  sm={2} md={2} lg={3} className="text-center align-text-middle">
-                        {this.state.value}
-                    </Form.Label>
-                </Form.Row>
-            </Form.Group>
-        );
-    }
-*/
