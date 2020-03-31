@@ -5,18 +5,14 @@ import { Alert } from 'react-bootstrap';
 class Login extends React.Component{
   constructor(props){
     super(props);
-    this.state = {show: true, message: props.m};
+    this.state = {show: true, message: this.props.message};
   }
   render(){
     return(
       <Layout>
-        {this.state.message ===  '1' && this.state.show && 
+        {this.state.message && this.state.show && 
               <Alert className="mb-0"variant="danger" onClose={()=>this.setState({show: false})} dismissible>
-                  <Alert.Heading>Please Login to view that!</Alert.Heading>
-              </Alert>}
-        {this.state.message ===  '2' && this.state.show && 
-              <Alert className="mb-0"variant="danger" onClose={()=>this.setState({show: false})} dismissible>
-                  <Alert.Heading>Invalid Login!</Alert.Heading>
+                  <p>{this.state.message}</p>
               </Alert>}
         <HomeJumbotron>
               <LoginCard/>
@@ -26,10 +22,11 @@ class Login extends React.Component{
   }
 }
 Login.getInitialProps=({query: m})=>{
-  if(m.message.length==0){
+  /*if(m.message==null){
     m.message='Please login to view that resource';
+    console.log("here"+m.message)
     return m;
-  } 
-  else return m;
+  } */
+  return {message: m.message};
 }
 export default Login;

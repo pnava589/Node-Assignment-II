@@ -19,7 +19,7 @@ const strategy = new LocalStrategy(localOpt, async(email,password,done)=>{
         //hash stored in the database, if passwords match return true.
         const validate = await userChosen.isValidPassword(password);
         if(!validate){
-            return done(null, false, {message: 'Wrong password'});
+            return done(null, false, {message: 'wrong password'});
         }
         //send the user information to the next middleware
         return done(null, userChosen, {message: 'Logged in successfully'});
