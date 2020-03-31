@@ -71,7 +71,36 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
                 console.log(error);
                 }  
             });
-    
+            router.get('/find/rating/under/:r1', helper.ensureAuthenticated, async(req,resp)=>{
+                try{
+                    
+                   const matchMovies = await MovieModel.find({ "ratings.average":{$lt:req.params.r1}});
+                   if(matchMovies){
+                       resp.json(matchMovies);
+                   }
+                   else{
+                       resp.json({message:"could not find movies"});
+                   }
+                }
+                catch(error){
+                    console.log(error);
+                    }  
+                });
+            router.get('/find/rating/over/:r1', helper.ensureAuthenticated, async(req,resp)=>{
+                    try{
+                        
+                       const matchMovies = await MovieModel.find({ "ratings.average":{$gt:req.params.r1}});
+                       if(matchMovies){
+                           resp.json(matchMovies);
+                       }
+                       else{
+                           resp.json({message:"could not find movies"});
+                       }
+                    }
+                    catch(error){
+                        console.log(error);
+                        }  
+                    });
             router.get('/find/rating/:r1/:r2', helper.ensureAuthenticated, async(req,resp)=>{
                 try{
                     
@@ -89,7 +118,58 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
                     }  
                 });
         
-            
+                router.get('/find/year/after/:y1', helper.ensureAuthenticated, async(req,resp)=>{
+                    try{
+                        const y1 = new Date(req.params.y1);
+                       const matchMovies = await MovieModel.aggregate([{
+                           $addFields:{
+                               convertedDate:{$toDate:'$release_date'}
+                           }
+                       },
+                    
+                    {
+                        '$match':
+                        {
+                            'convertedDate':
+                            {
+                                '$gte':y1
+                            }
+                        }
+                    }
+                    ]);
+
+                        resp.json(matchMovies);
+                    }
+                    catch(error){
+                        console.log(error);
+                        }  
+                    });
+                router.get('/find/year/before/:y1', helper.ensureAuthenticated, async(req,resp)=>{
+                        try{
+                            const y1 = new Date(req.params.y1);
+                           const matchMovies = await MovieModel.aggregate([{
+                               $addFields:{
+                                   convertedDate:{$toDate:'$release_date'}
+                               }
+                           },
+                        
+                        {
+                            '$match':
+                            {
+                                'convertedDate':
+                                {
+                                    '$lte':y1
+                                }
+                            }
+                        }
+                        ]);
+    
+                            resp.json(matchMovies);
+                        }
+                        catch(error){
+                            console.log(error);
+                            }  
+                    });
                 router.get('/find/year/:y1/:y2', helper.ensureAuthenticated, async(req,resp)=>{
                     try{
                         const y1 = new Date(req.params.y1);
