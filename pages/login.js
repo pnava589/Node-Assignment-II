@@ -12,6 +12,7 @@ class Login extends React.Component{
       <Layout>
         {this.state.message && this.state.show && 
               <Alert className="mb-0"variant="danger" onClose={()=>this.setState({show: false})} dismissible>
+                  <Alert.Heading>Login error</Alert.Heading>
                   <p>{this.state.message}</p>
               </Alert>}
         <HomeJumbotron>
