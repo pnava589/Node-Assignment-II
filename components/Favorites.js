@@ -1,6 +1,7 @@
 import { Container, Row, Col, Table } from 'react-bootstrap';
 import { useEffect, useState, Component } from "react";
 import SingleFavorite from './SingleFavorite';
+import fetch from 'isomorphic-unfetch';
 
 
 
@@ -10,27 +11,23 @@ constructor(props){
     this.state={favorites:this.props.data};
 }
 
-/*static getDerivedStateFromProps(nextProps,prevState){
-    return{favorites:nextProps.data};
-}*/
 
-componentDidUpdate(){
-   
+
+componentDidMount(){
+    console.log('does it get here?');
+    console.log(JSON.stringify(this.state.favorites));
+    const list=[];
+    for(let item in this.state.favorites){list.push(item);}
+    list.forEach(item => console.log(item));
 }
+
 render(){
-    let list = [];
-    for(let item in this.props.data){list.push(item);}
-    console.log(list);
+    const {data} = this.props;
     return(
     <Row className="text-white">
         <Col className="col-md-1 align-self-center text-center text-dark">
-        {list.map(item =>
-            <SingleFavorite key={item.id}
-                            id={item.id}
-                            title={item.title}
-                            poster={item.poster}/>)}
+        {JSON.stringify(this.props.data)}
         
-      
         </Col>
     </Row>
     );

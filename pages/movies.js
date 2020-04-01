@@ -10,7 +10,7 @@ import { resolve } from 'react-resolver';
 class Movies extends React.Component{
     constructor(props){
         super(props);
-        this.state = {movies: this.props.data,favorites:{},loaded:false};
+        this.state = {movies: this.props.data,favorites:{},loaded:false,list:[]};
     }
 
     static async getInitialProps(){
@@ -25,10 +25,13 @@ class Movies extends React.Component{
         this.setState({movies: data});
     }
 
-    
-
     async componentDidUpdate(){
         
+        
+    }
+
+    async componentDidMount(){
+       this.getFavorites();
     }
 
     getFavorites = async() =>{
@@ -41,7 +44,7 @@ class Movies extends React.Component{
             const resp = await fetch('http://localhost:8080/api/favorites',options);
             const data = await resp.json();
             this.setState({favorites:data});
-            return {data};
+           
             
             }
             catch(err){
@@ -52,7 +55,7 @@ class Movies extends React.Component{
     
     //add cards for each movie and make the filter a dropdown, maybe accordian?
     render(){
-        this.getFavorites();
+        
         const {data} = this.props;
         const {favorites} = this.state;
         return(
