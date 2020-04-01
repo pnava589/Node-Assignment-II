@@ -15,14 +15,15 @@ constructor(props){
 
 componentDidMount(){
     console.log('does it get here?');
-    console.log(JSON.stringify(this.state.favorites));
+    console.log(JSON.stringify(this.props.data));
     const list=[];
-    for(let item in this.state.favorites){list.push(item);}
+    for(let item in this.props.data){list.push(item);}
     list.forEach(item => console.log(item));
 }
 
 render(){
     const {data} = this.props;
+    if(data.length>1){}
     return(
     <Row className="text-white">
         <Col className="col-md-1 align-self-center text-center text-dark">
