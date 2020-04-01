@@ -2,7 +2,45 @@ const express = require('express');
 const router = express.Router();
 const MovieModel = require('../Models/movie.js');
 const BriefMovieModel = require('../Models/alternativeMovie');
+const favoritesModel = require ('../models/Favorite');
 const helper = require('./helper.js');
+
+
+
+router.post('/favorites', async(req,resp)=>{
+    console.log(req.body);
+    const favorite = new favoritesModel({
+        id:req.body.id,
+        poster:req.body.poster,
+        title:req.body.title
+    })
+    try{
+        const newFavorite = await favorite.save();
+        resp.status(201).json(newFavorite);
+    }
+    catch(err){
+        resp.status(400).json({message:err.message})
+    }
+});
+
+router.get('/favorites', async(req,resp)=>{
+  
+    try{
+        const allFavorites = await favoritesModel.find({});
+        if(allFavorites){
+            resp.json(allFavorites);
+        }
+        else{
+            resp.json({message:"could not find all favorites"});
+        }
+    }
+    catch(err){
+        resp.status(400).json({message:err.message})
+    }
+});
+
+
+
 
 
 router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)=>{

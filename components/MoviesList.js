@@ -33,7 +33,9 @@ class MoviesList extends React.Component{
 
                         <tbody>
                         {this.props.data.map(item =>
-                            <SingleMovie key={item.id}
+                            <SingleMovie getFavorites={this.props.getFavorites} 
+                                        id={item.id}
+                                         key={item.id}
                                          poster={item.poster}
                                           title={item.title}
                                           rating={item.ratings.average}

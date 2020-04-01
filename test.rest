@@ -1,5 +1,12 @@
-get http://localhost:8080/api/find/title/Trans
+post http://localhost:8080/api/favorites
+Content-Type: application/json
 
+{
+    "id":1,
+    "poster":"tryPoste.jpg",
+    "title":"titleTrial"
+}
+###
 use to login before testing api
 
 http://localhost:8080/static/login.html
