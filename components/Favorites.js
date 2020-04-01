@@ -8,7 +8,7 @@ import fetch from 'isomorphic-unfetch';
 class Favorites extends React.Component{
 constructor(props){
     super(props);
-    this.state={favorites:this.props.data};
+    this.state={favorites: this.props.favorites};
 }
 
 
@@ -21,14 +21,16 @@ componentDidMount(){
     list.forEach(item => console.log(item));
 }
 
+
+    
+    
 render(){
     const {data} = this.props;
-    if(data.length>1){}
     return(
+    
     <Row className="text-white">
         <Col className="col-md-1 align-self-center text-center text-dark">
-        {JSON.stringify(this.props.data)}
-        
+        {this.state.favorites.map(favorites=><p key={favorites.id}>{favorites.title}</p>)}
         </Col>
     </Row>
     );
