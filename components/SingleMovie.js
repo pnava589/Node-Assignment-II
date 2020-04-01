@@ -27,13 +27,11 @@ class SingleMovie extends React.Component{
         
         const resp = await fetch('http://localhost:8080/api/favorites',options);
         const data = await resp.json();
-        this.props.getFavorites();
+        await this.props.getFavorites();
         }
         catch(err){
             console.log('fecth error: '+err);
         }
-        
-        
     };
 
     render(){

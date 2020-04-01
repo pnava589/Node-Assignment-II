@@ -30,6 +30,23 @@ class Movies extends React.Component{
         console.log(data);
         this.setState({movies: data});
     }
+    getFavorites = async() =>{
+        try{
+            const options ={
+            method:'GET',
+            headers:{'Content-type':'application/json'},
+            };
+
+            const resp = await fetch('http://localhost:8080/api/favorites',options);
+            const data = await resp.json();
+            this.setState({favorites:data});
+
+
+            }
+            catch(err){
+                console.log('fecth error: '+err);
+            }
+    }
     //add cards for each movie and make the filter a dropdown, maybe accordian?
     render(){
         return(

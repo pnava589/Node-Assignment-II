@@ -10,7 +10,12 @@ constructor(props){
     super(props);
     this.state={favorites: this.props.favorites};
 }
-
+componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.favorites.length !== prevProps.favorites.length) {
+      this.setState({favorites: this.props.favorites});
+    }
+  }
 
 render(){
     return(
