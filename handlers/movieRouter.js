@@ -81,7 +81,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
     });
 
 
-    router.get('/movies/:id', helper.ensureAuthenticated , async(req,resp)=>{
+    router.get('/movies/:id', async(req,resp)=>{
         try{
             
            const matchMovies = await MovieModel.find({id:req.params.id});
