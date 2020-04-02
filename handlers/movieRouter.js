@@ -3,19 +3,20 @@ const router = express.Router();
 const MovieModel = require('../Models/movie.js');
 const BriefMovieModel = require('../Models/alternativeMovie');
 const favoritesModel = require ('../models/Favorite');
+const userModel = require('../Models/User');
 const helper = require('./helper.js');
 
 
 
 router.post('/favorites', async(req,resp)=>{
-    console.log(req.body);
-    const favorite = new favoritesModel({
-        id:req.body.id,
-        poster:req.body.poster,
-        title:req.body.title
-    })
+    console.log('is posting');
     try{
-        const newFavorite = await favorite.save();
+        const newFavorite = await userModel.updateOne(
+            {email:req.user.email},
+            {
+                $addToSet:{favorites:{'id':req.body.id,'poster':req.body.poster,'title':req.body.title}}
+            }
+        );
         resp.status(201).json(newFavorite);
     }
     catch(err){
@@ -26,7 +27,9 @@ router.post('/favorites', async(req,resp)=>{
 router.get('/favorites', async(req,resp)=>{
   
     try{
-        const allFavorites = await favoritesModel.find({});
+        console.log('USER!! '+req.user.email);
+        let query = {email:req.user.email};
+        const allFavorites = await userModel.findOne(query,{favorites:1});
         if(allFavorites){
             resp.json(allFavorites);
         }

@@ -10,7 +10,7 @@ import fetch from 'isomorphic-unfetch';
 class Movies extends React.Component{
     constructor(props){
         super(props);
-        this.state = {movies: this.props.data,favorites:this.props.favorites,loaded:false,list:[]};
+        this.state = {movies: this.props.data,favorites:[],loaded:false,list:[]};
     }
 
     static async getInitialProps(){
@@ -27,30 +27,33 @@ class Movies extends React.Component{
         this.setState({movies: data});
     }
 
-    componentDidMount(){
-        this.getFavorites();
+    async componentDidMount(){
+        await this.getFavorites();
     }
-
+    
     getFavorites = async() =>{
-        const options ={
+        try{
+            const options ={
             method:'GET',
             headers:{'Content-type':'application/json'},
             };
-        const resp = await fetch('http://localhost:8080/api/favorites',options);
-        const favorites = await resp.json();
-        this.setState({favorites:favorites});
+
+            const resp = await fetch('http://localhost:8080/api/favorites',options);
+            const data = await resp.json();
+            console.log(data);
+            console.log(data.length);
+            console.log(data.favorites);
+            this.setState({favorites:data.favorites});
+
+
+            }
+            catch(err){
+                console.log('fecth error: '+err);
+            }
     }
-    
-    //add cards for each movie and make the filter a dropdown, maybe accordian?
+    //add cards for each movie and make the filter a dropdown, maybe accordian? 
     render(){
-        if(!this.state.favorites){
-        return(
-            <Layout>
-                <Filter filterFunction={this.getFilteredMovies}/>
-                <MoviesList data={this.state.movies} getFavorites={this.getFavorites}/>
-            </Layout>
-        );}
-        else{
+
             return(
                 <Layout>
                     <Filter filterFunction={this.getFilteredMovies}/>
@@ -58,7 +61,6 @@ class Movies extends React.Component{
                     <MoviesList data={this.state.movies} getFavorites={this.getFavorites}/>
                 </Layout>
             );
-        }
     }
 }
 export default Movies;
