@@ -36,7 +36,8 @@ render(){
         {this.state.favorites.map(item => <SingleFavorite key={item.id}
                                                           id={item.id}
                                                           poster={item.poster}
-                                                          title={item.title}/>)}
+                                                          title={item.title}
+                                                          getFavorites={this.props.getFavorites}/>)}
        
     </Row>
     );

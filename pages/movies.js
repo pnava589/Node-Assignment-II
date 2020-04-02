@@ -1,7 +1,6 @@
 import Layout from '../components/Layout';
 import Favorites from '../components/Favorites';
 import Filter from '../components/filter';
-import Favorites from '../components/Favorites';
 import MoviesList from '../components/MoviesList';
 import fetch from 'isomorphic-unfetch';
 
@@ -41,9 +40,6 @@ class Movies extends React.Component{
 
             const resp = await fetch('http://localhost:8080/api/favorites',options);
             const data = await resp.json();
-            console.log(data);
-            console.log(data.length);
-            console.log(data.favorites);
             this.setState({favorites:data.favorites});
 
 
@@ -52,13 +48,13 @@ class Movies extends React.Component{
                 console.log('fecth error: '+err);
             }
     }
-    //add cards for each movie and make the filter a dropdown, maybe accordian? 
+    //add cards for each movie and make the filter a dropdown, maybe accordian?  
     render(){
 
             return(
                 <Layout>
                     <Filter filterFunction={this.getFilteredMovies}/>
-                    <Favorites favorites={this.state.favorites}/>
+                    <Favorites favorites={this.state.favorites} getFavorites={this.getFavorites}/>
                     <MoviesList data={this.state.movies} getFavorites={this.getFavorites}/>
                 </Layout>
             );

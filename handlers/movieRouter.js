@@ -12,7 +12,7 @@ router.post('/favorites', async(req,resp)=>{
     console.log('is posting');
     try{
         const newFavorite = await userModel.updateOne(
-            {email:req.user.email},
+            {email:'al@ace.ca'},
             {
                 $addToSet:{favorites:{'id':req.body.id,'poster':req.body.poster,'title':req.body.title}}
             }
@@ -27,8 +27,8 @@ router.post('/favorites', async(req,resp)=>{
 router.get('/favorites', async(req,resp)=>{
   
     try{
-        console.log('USER!! '+req.user.email);
-        let query = {email:req.user.email};
+        
+        let query = {email:'al@ace.ca'};
         const allFavorites = await userModel.findOne(query,{favorites:1});
         if(allFavorites){
             resp.json(allFavorites);
@@ -42,6 +42,21 @@ router.get('/favorites', async(req,resp)=>{
     }
 });
 
+router.delete('/favorites', async(req,resp)=>{
+    console.log('is deleteing');
+    try{
+        const newFavorite = await userModel.updateOne(
+            {email:'al@ace.ca'},
+            {
+                $pull:{favorites:{id:req.body.id}}
+            }
+        );
+        resp.status(201).json(newFavorite);
+    }
+    catch(err){
+        resp.status(400).json({message:err.message})
+    }
+});
 
 
 

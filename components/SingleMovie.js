@@ -35,11 +35,8 @@ class SingleMovie extends React.Component{
     };
 
     render(){
-<<<<<<< Updated upstream
        
-=======
         
->>>>>>> Stashed changes
         const imgUrl = "https://image.tmdb.org/t/p/w92"+this.props.poster;
         return(
             <tr>
