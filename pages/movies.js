@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import Favorites from '../components/Favorites';
 import Filter from '../components/filter';
 import Favorites from '../components/Favorites';
 import MoviesList from '../components/MoviesList';
@@ -61,6 +62,7 @@ class Movies extends React.Component{
                     <MoviesList data={this.state.movies} getFavorites={this.getFavorites}/>
                 </Layout>
             );
+        
     }
 }
 export default Movies;
