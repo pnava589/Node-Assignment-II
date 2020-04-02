@@ -48,7 +48,7 @@ class Movies extends React.Component{
                 console.log('fecth error: '+err);
             }
     }
-    //add cards for each movie and make the filter a dropdown, maybe accordian?  
+    //add cards for each movie and make the filter a dropdown, maybe accordian?   
     render(){
 
             return(

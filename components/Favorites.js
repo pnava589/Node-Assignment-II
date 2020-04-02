@@ -1,14 +1,16 @@
-import { Container, Row, Col, Table } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { useEffect, useState, Component } from "react";
 import SingleFavorite from './SingleFavorite';
-import fetch from 'isomorphic-unfetch';
-
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import Collapse from 'react-bootstrap/Collapse';
+//library.add(fas);
 
 
 class Favorites extends React.Component{
 constructor(props){
     super(props);
-    this.state={favorites:this.props.favorites};
+    this.state={favorites:this.props.favorites,show:true};
 }
 componentDidUpdate(prevProps) {
     console.log(this.props.favorites);
@@ -19,27 +21,33 @@ componentDidUpdate(prevProps) {
 
 
 componentDidMount(){
-    console.log('does it get here?');
-    console.log(JSON.stringify(this.props.data));
+    console.log('favorites mounts');
+    
 }
 
-
-    
-    
 render(){
-    const {data} = this.props;
     return(
-    
-    <Row className="text-white">
+    <div className='col-md-12 m-1'>
+      <Collapse in={this.state.show}>
+      <Row className="text-white" id='favRow'>
         
-        <Col className='col-md-1 align-self-center text-center text-dark'><h5>Favorites</h5></Col>
-        {this.state.favorites.map(item => <SingleFavorite key={item.id}
-                                                          id={item.id}
-                                                          poster={item.poster}
-                                                          title={item.title}
-                                                          getFavorites={this.props.getFavorites}/>)}
-       
-    </Row>
+          <Col className='col-md-1 align-self-center text-center text-dark'><h5>Favorites</h5></Col>
+          {this.state.favorites.map(item => <SingleFavorite key={item.id}
+                                                            id={item.id}
+                                                            poster={item.poster}
+                                                            title={item.title}
+                                                            getFavorites={this.props.getFavorites}/>)}
+      </Row>
+      </Collapse>
+      <Button
+          onClick={()=>this.setState({show:!this.state.show})}
+          aria-controls='favRow'
+          aria-expanded={this.state.show}
+          >
+          {this.state.show && <FontAwesomeIcon icon='angle-double-up'/>}
+          {!this.state.show && <FontAwesomeIcon icon='angle-double-down'/>}
+      </Button>
+      </div>
     );
     }
 }
@@ -47,3 +55,5 @@ render(){
 
 
 export default Favorites;
+
+
