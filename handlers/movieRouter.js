@@ -8,11 +8,11 @@ const helper = require('./helper.js');
 
 
 
-router.post('/favorites', async(req,resp)=>{
+router.post('/favorites', helper.ensureAuthenticated, async(req,resp)=>{
     console.log('is posting');
     try{
         const newFavorite = await userModel.updateOne(
-            {email:'al@ace.ca'},
+            {email:req.user.email},
             {
                 $addToSet:{favorites:{'id':req.body.id,'poster':req.body.poster,'title':req.body.title}}
             }
@@ -24,11 +24,11 @@ router.post('/favorites', async(req,resp)=>{
     }
 });
 
-router.get('/favorites', async(req,resp)=>{
+router.get('/favorites', helper.ensureAuthenticated, async(req,resp)=>{
   
     try{
         
-        let query = {email:'al@ace.ca'};
+        let query = {email:req.user.email};
         const allFavorites = await userModel.findOne(query,{favorites:1});
         if(allFavorites){
             resp.json(allFavorites);
@@ -42,11 +42,11 @@ router.get('/favorites', async(req,resp)=>{
     }
 });
 
-router.delete('/favorites', async(req,resp)=>{
+router.delete('/favorites', helper.ensureAuthenticated, async(req,resp)=>{
     console.log('is deleteing');
     try{
         const newFavorite = await userModel.updateOne(
-            {email:'al@ace.ca'},
+            {email:req.user.email},
             {
                 $pull:{favorites:{id:req.body.id}}
             }
@@ -61,7 +61,7 @@ router.delete('/favorites', async(req,resp)=>{
 
 
 
-router.get('/find/title/:substring', async(req,resp)=>{
+router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)=>{
     try{
         
         const matchMovies = await BriefMovieModel.find({title: new RegExp(req.params.substring,'i')});
@@ -78,7 +78,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
         }  
     });
 
-    router.get('/movies', async(req,resp)=>{
+    router.get('/movies', helper.ensureAuthenticated, async(req,resp)=>{
         try{
        
             const allMovies = await MovieModel.find({});
@@ -96,7 +96,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
     });
 
 
-    router.get('/movies/:id', async(req,resp)=>{
+    router.get('/movies/:id', helper.ensureAuthenticated, async(req,resp)=>{
         try{  
            const matchMovies = await MovieModel.find({id:req.params.id});
            if(matchMovies){
