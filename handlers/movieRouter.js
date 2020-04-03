@@ -12,7 +12,7 @@ router.post('/favorites', helper.ensureAuthenticated, async(req,resp)=>{
     console.log('is posting');
     try{
         const newFavorite = await userModel.updateOne(
-            {email:'al@ace.ca'},
+            {email:req.user.email},
             {
                 $addToSet:{favorites:{'id':req.body.id,'poster':req.body.poster,'title':req.body.title}}
             }
@@ -28,7 +28,7 @@ router.get('/favorites', helper.ensureAuthenticated, async(req,resp)=>{
   
     try{
         
-        let query = {email:'al@ace.ca'};
+        let query = {email:req.user.email};
         const allFavorites = await userModel.findOne(query,{favorites:1});
         if(allFavorites){
             resp.json(allFavorites);
@@ -46,7 +46,7 @@ router.delete('/favorites', helper.ensureAuthenticated, async(req,resp)=>{
     console.log('is deleteing');
     try{
         const newFavorite = await userModel.updateOne(
-            {email:'al@ace.ca'},
+            {email:req.user.email},
             {
                 $pull:{favorites:{id:req.body.id}}
             }
@@ -111,7 +111,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
             }  
         });
 
-        router.get('/brief', helper.ensureAuthenticated, async(req,resp)=>{
+        router.get('/brief', async(req,resp)=>{
             try{
                 
                const matchMovies = await BriefMovieModel.find({});
@@ -128,6 +128,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
             });
             router.get('/find/rating/under/:r1', helper.ensureAuthenticated, async(req,resp)=>{
                 try{
+                    
                    const matchMovies = await BriefMovieModel.find({ "ratings.average":{$lt:req.params.r1}});
                    if(matchMovies){
                        resp.json(matchMovies);
@@ -142,6 +143,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
                 });
             router.get('/find/rating/over/:r1', helper.ensureAuthenticated, async(req,resp)=>{
                     try{
+                        
                        const matchMovies = await BriefMovieModel.find({ "ratings.average":{$gt:req.params.r1}});
                        if(matchMovies){
                            resp.json(matchMovies);
@@ -156,6 +158,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
                     });
             router.get('/find/rating/:r1/:r2', helper.ensureAuthenticated, async(req,resp)=>{
                 try{
+                    
                    const matchMovies = await BriefMovieModel.find({"ratings.average":
                    {$gt:req.params.r1, $lt:req.params.r2}});
                    if(matchMovies){
@@ -257,5 +260,3 @@ module.exports=router;
         
 
     
-
-
