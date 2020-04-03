@@ -16,7 +16,7 @@ class Movies extends React.Component{
     static async getInitialProps(context){
         const {query} = context;
         console.log(query);
-        let url ='/movies';
+        let url ='/brief';
         
         if(query.substring){url=`/find/title/${query.substring}`};
         console.log(`http://localhost:8080/api${url}`);

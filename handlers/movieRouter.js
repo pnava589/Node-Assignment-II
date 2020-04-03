@@ -64,7 +64,7 @@ router.delete('/favorites', async(req,resp)=>{
 router.get('/find/title/:substring', async(req,resp)=>{
     try{
         
-        const matchMovies = await MovieModel.find({title: new RegExp(req.params.substring,'i')});
+        const matchMovies = await BriefMovieModel.find({title: new RegExp(req.params.substring,'i')});
         if(matchMovies){
             resp.json(matchMovies);
         }
@@ -129,7 +129,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
             router.get('/find/rating/under/:r1', helper.ensureAuthenticated, async(req,resp)=>{
                 try{
                     
-                   const matchMovies = await MovieModel.find({ "ratings.average":{$lt:req.params.r1}});
+                   const matchMovies = await BriefMovieModel.find({ "ratings.average":{$lt:req.params.r1}});
                    if(matchMovies){
                        resp.json(matchMovies);
                    }
@@ -144,7 +144,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
             router.get('/find/rating/over/:r1', helper.ensureAuthenticated, async(req,resp)=>{
                     try{
                         
-                       const matchMovies = await MovieModel.find({ "ratings.average":{$gt:req.params.r1}});
+                       const matchMovies = await BriefMovieModel.find({ "ratings.average":{$gt:req.params.r1}});
                        if(matchMovies){
                            resp.json(matchMovies);
                        }
@@ -159,7 +159,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
             router.get('/find/rating/:r1/:r2', helper.ensureAuthenticated, async(req,resp)=>{
                 try{
                     
-                   const matchMovies = await MovieModel.find({"ratings.average":
+                   const matchMovies = await BriefMovieModel.find({"ratings.average":
                    {$gt:req.params.r1}, "ratings.average":{$lt:req.params.r2}});
                    if(matchMovies){
                        resp.json(matchMovies);
@@ -176,7 +176,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
                 router.get('/find/year/after/:y1', helper.ensureAuthenticated, async(req,resp)=>{
                     try{
                         const y1 = new Date(req.params.y1);
-                       const matchMovies = await MovieModel.aggregate([{
+                       const matchMovies = await BriefMovieModel.aggregate([{
                            $addFields:{
                                convertedDate:{$toDate:'$release_date'}
                            }
@@ -202,7 +202,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
                 router.get('/find/year/before/:y1', helper.ensureAuthenticated, async(req,resp)=>{
                         try{
                             const y1 = new Date(req.params.y1);
-                           const matchMovies = await MovieModel.aggregate([{
+                           const matchMovies = await BriefMovieModel.aggregate([{
                                $addFields:{
                                    convertedDate:{$toDate:'$release_date'}
                                }
@@ -229,7 +229,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
                     try{
                         const y1 = new Date(req.params.y1);
                         const y2 = new Date(req.params.y2);
-                       const matchMovies = await MovieModel.aggregate([{
+                        const matchMovies = await BriefMovieModel.aggregate([{
                            $addFields:{
                                convertedDate:{$toDate:'$release_date'}
                            }
