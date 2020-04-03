@@ -13,8 +13,14 @@ class Movies extends React.Component{
         this.state = {movies: this.props.data,favorites:[],loaded:false,list:[]};
     }
 
-    static async getInitialProps(){
-        const res = await fetch('http://localhost:8080/api/movies');
+    static async getInitialProps(context){
+        const {query} = context;
+        console.log(query);
+        let url ='/movies';
+        
+        if(query.substring){url=`/find/title/${query.substring}`};
+        console.log(`http://localhost:8080/api${url}`);
+        const res = await fetch(`http://localhost:8080/api${url}`);
         const data = await res.json();
         return {data};
     }
@@ -67,7 +73,7 @@ class Movies extends React.Component{
                 console.log('fecth error: '+err);
             }
     }
-    //add cards for each movie and make the filter a dropdown, maybe accordian?   
+     
     render(){
 
             return(

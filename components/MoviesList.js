@@ -10,13 +10,12 @@ class MoviesList extends React.Component{
     render(){
         
         return(
-            <Container>
+            <Row className='m-5'>
             <br/>
-            <Row>
                
                 <Col>
-                  <Container style={{height: "40em",overflowY:'scroll'}}>
-                    <Table >   
+                 
+                    <Table style={{height: "40em",overflowY:'scroll'}}>   
                         <thead>
                             <tr>
                                 <th></th>
@@ -42,10 +41,10 @@ class MoviesList extends React.Component{
                         </tbody>
 
                     </Table>
-                    </Container> 
+                   
                 </Col>
+            
             </Row>
-            </Container>
         );
         } 
     }

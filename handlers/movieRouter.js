@@ -61,10 +61,10 @@ router.delete('/favorites', async(req,resp)=>{
 
 
 
-router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)=>{
+router.get('/find/title/:substring', async(req,resp)=>{
     try{
         
-        const matchMovies = await MovieModel.find({title: new RegExp(req.params.substring)});
+        const matchMovies = await MovieModel.find({title: new RegExp(req.params.substring,'i')});
         if(matchMovies){
             resp.json(matchMovies);
         }
