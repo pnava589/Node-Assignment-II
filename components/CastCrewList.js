@@ -25,7 +25,7 @@ class CastCrewList extends React.Component{
                 <Card.Body style={{overflowY: 'scroll'}}>
                     <Row style={{height: '72vh'}}>
                         <Col xs={12}>
-                        {this.state.show == "cast" && <CastMembers cast={this.state.movie.production.cast}/>}
+                        {this.state.show == "cast" && <CastMembers view={this.props.view} cast={this.state.movie.production.cast}/>}
                         {this.state.show == "crew" && <CrewMembers crew={this.state.movie.production.crew}/>}
                         </Col>
                     </Row>

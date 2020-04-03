@@ -9,6 +9,15 @@ class CustomModal extends React.Component{
             label: this.props.label
         };
     }
+    componentDidUpdate=(prevProps)=>{
+        if (this.props.label!== prevProps.label) {
+            this.setState({
+                smUrl: this.props.smUrl,
+                lgUrl: this.props.lgUrl,
+                label: this.props.label
+            });
+          }
+    }
     show=()=>{
         this.setState({show: true});
     }

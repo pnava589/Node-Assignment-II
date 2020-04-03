@@ -27,7 +27,12 @@ const CastMembers = (props) =>{
                                 <Row style={{marginBottom: "1em"}}key={member.id}>
                                     <Col xs={4}>{member.character}</Col>
                                     <Col xs={4}>{member.name}</Col>
-                                    <Col xs={4}><Button>View</Button></Col>
+                                    <Col xs={4}><Button 
+                                                id={member.id}
+                                                onClick={props.view}>
+                                                View
+                                                </Button>
+                                    </Col>
                                 </Row>)
                 }
             </div>
