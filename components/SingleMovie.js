@@ -8,10 +8,9 @@ library.add(fas);
 class SingleMovie extends React.Component{
     constructor(props){
         super(props);
-        this.state={title:this.props.title,poster:this.props.poster,id:this.props.id,
-                    body:{'id':this.props.id,'poster':this.props.poster,'title':this.props.title}};
+        this.state={title:this.props.title,poster:this.props.poster,id:this.props.id,year:this.props.year,
+            rating:this.props.rating, body:{'id':this.props.id,'poster':this.props.poster,'title':this.props.title}};
     }
-
 
     componentDidMount(){
         
@@ -35,15 +34,13 @@ class SingleMovie extends React.Component{
     };
 
     render(){
-       
-        
-        const imgUrl = "https://image.tmdb.org/t/p/w92"+this.props.poster;
+        const imgUrl = "https://image.tmdb.org/t/p/w92"+this.state.poster;
         return(
             <tr>
                 <td><img src={imgUrl}/></td>
-                <td className='text-center'>{this.props.title}</td>
-                <td>{this.props.year}</td>
-                <td className='text-center'>{this.props.rating}</td>
+                <td className='text-center'>{this.state.title}</td>
+                <td className='text-center'>{this.state.year}</td>
+                <td className='text-center'>{this.state.rating}</td>
                 <td ><Button className="btn btn-primary" onClick={this.addFavorite}><FontAwesomeIcon icon='thumbs-up'/></Button></td>
                 <td><Button className='btn btn-primary'>View</Button></td>
             </tr>

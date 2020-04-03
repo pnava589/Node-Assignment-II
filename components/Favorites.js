@@ -4,7 +4,7 @@ import SingleFavorite from './SingleFavorite';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import Collapse from 'react-bootstrap/Collapse';
-//library.add(fas);
+
 
 
 class Favorites extends React.Component{
@@ -13,7 +13,6 @@ constructor(props){
     this.state={favorites:this.props.favorites,show:true};
 }
 componentDidUpdate(prevProps) {
-    console.log(this.props.favorites);
     if (this.props.favorites.length !== prevProps.favorites.length) {
       this.setState({favorites: this.props.favorites});
     }

@@ -19,6 +19,27 @@ class Movies extends React.Component{
         return {data};
     }
 
+    sortBy = (e) =>{
+        console.log(e.target.name);
+        if(e.target.name === 'title'){
+        this.state.movies.sort((a,b)=>{ if(a.title > b.title){return 1}
+                                            if(a.title < b.title){return -1}
+                                            return 0;})
+        }
+        if(e.target.name === 'year'){
+        this.state.movies.sort((a,b)=>{ if(a.release_date > b.release_date){return 1}
+                                                if(a.release_date < b.release_date){return -1}
+                                                return 0;})
+        }
+        if(e.target.name === 'rating'){
+        this.state.movies.sort((a,b)=>{ if(a.ratings.average > b.ratings.average){return 1}
+                                                if(a.ratings.average < b.ratings.average){return -1}
+                                                return 0;})
+        }
+        this.setState({movies:this.state.movies});
+        
+    }
+
 
     getFilteredMovies = async (url) =>{
         const res = await fetch(url);
@@ -27,8 +48,8 @@ class Movies extends React.Component{
         this.setState({movies: data});
     }
 
-    async componentDidMount(){
-        await this.getFavorites();
+     componentDidMount(){
+        this.getFavorites();
     }
     
     getFavorites = async() =>{
@@ -41,8 +62,6 @@ class Movies extends React.Component{
             const resp = await fetch('http://localhost:8080/api/favorites',options);
             const data = await resp.json();
             this.setState({favorites:data.favorites});
-
-
             }
             catch(err){
                 console.log('fecth error: '+err);
@@ -55,7 +74,7 @@ class Movies extends React.Component{
                 <Layout>
                     <Filter filterFunction={this.getFilteredMovies}/>
                     <Favorites favorites={this.state.favorites} getFavorites={this.getFavorites}/>
-                    <MoviesList data={this.state.movies} getFavorites={this.getFavorites}/>
+                    <MoviesList data={this.state.movies} getFavorites={this.getFavorites} sortBy={this.sortBy}/>
                 </Layout>
             );
         

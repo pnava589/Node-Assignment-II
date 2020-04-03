@@ -27,7 +27,9 @@ class HomeCard extends React.Component{
                         </Form.Group>
                         <Form.Group as={Row} className="ml-lg-5 pl-lg-1">
                             <Col sm={12} md={6} lg={6}>
+                                
                                 <Button disabled={!this.state.value} >Search Related Titles</Button>
+                                
                             </Col>
                             <Col sm={12} md={6} lg={6}>
                                 <Link href="/movies">
