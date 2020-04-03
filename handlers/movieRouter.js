@@ -97,8 +97,7 @@ router.get('/find/title/:substring', async(req,resp)=>{
 
 
     router.get('/movies/:id', async(req,resp)=>{
-        try{
-            
+        try{  
            const matchMovies = await MovieModel.find({id:req.params.id});
            if(matchMovies){
                resp.json(matchMovies);
