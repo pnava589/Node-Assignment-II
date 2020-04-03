@@ -7,6 +7,12 @@ function handleAll(nextApp, app, handle){
     app.get('/home', helper.ensureAuthenticated, (req,resp) => {
         return nextApp.render(req,resp, '/home', req.query);
     });
+    app.get('/movies', helper.ensureAuthenticated, (req,resp) => {
+        return nextApp.render(req,resp, '/movies', req.query);
+    });
+    app.get('/details', helper.ensureAuthenticated, (req,resp) => {
+        return nextApp.render(req,resp, '/details', req.query);
+    });
     app.get('/login', (req, resp)=>{
         return nextApp.render(req,resp, '/login', req.query);
     });

@@ -21,7 +21,7 @@ class RangeInput extends React.Component{
                 underDisabled: true,
                 overDisabled: false
             });
-        } else if(e.target.id =='between'){
+        } else if(e.target.id =='betweenRating'){
             this.setState({
                 underDisabled: false,
                 overDisabled: false
@@ -53,7 +53,7 @@ class RangeInput extends React.Component{
     render(){
         return(
             <Form onSubmit={this.handleSearch}>
-                <Form.Group controlId={this.props.controlId}>
+                <Form.Group>
                     <Form.Row>
                         <Form.Label column sm={2} md={2} lg={2} className="text-left align-middle align-text-middle">
                                 Ratings
@@ -61,16 +61,22 @@ class RangeInput extends React.Component{
                         <Col sm={10} md={10} lg={2}>
                             <Form.Check type="radio" id="under" name="rating" label="Under" value="under" onClick={this.onClick}/>
                             <Form.Check type="radio" id="over" name="rating" label="Over" value="over" onClick={this.onClick}/>
-                            <Form.Check type="radio" id="between" name="rating" label="Between" value="between" onClick={this.onClick}/>
+                            <Form.Check type="radio" id="betweenRating" name="rating" label="Between" value="between" onClick={this.onClick}/>
                         </Col>
                         <Col sm={10} md={10} lg={3} >
-                            <Form.Control type="range" min="1" max="10" name="over" disabled={this.state.overDisabled} onChange={this.onChange}/>
+                            <Form.Control id="overRating" type="range" min="1" max="10" name="over" 
+                            disabled={this.state.overDisabled} onChange={this.onChange}
+                            defaultValue={this.state.over}
+                            />
                         </Col>
                         <Form.Label column  sm={2} md={2} lg={1} className="text-center align-text-middle">
                             {this.state.over}
                         </Form.Label>
                         <Col sm={10} md={10} lg={3} >
-                            <Form.Control type="range" min="1" max="10" name="under" disabled={this.state.underDisabled} onChange={this.onChange}/>
+                            <Form.Control id="underRating" type="range" min="1" max="10" name="under" 
+                            disabled={this.state.underDisabled} onChange={this.onChange}
+                            defaultValue={this.state.under}
+                            />
                         </Col>
                         <Form.Label column  sm={2} md={2} lg={1} className="text-center align-text-middle">
                             {this.state.under}

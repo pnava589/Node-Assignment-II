@@ -22,7 +22,7 @@ class HomeCard extends React.Component{
                                 Title
                             </Form.Label>
                             <Col sm={12} md={9} lg={10}>
-                                <Form.Control type="text" placeholder="E.g. John Wick" onChange={this.onChange}/>
+                                <Form.Control type="text" placeholder="E.g. John" onChange={this.onChange}/>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="ml-lg-5 pl-lg-1">

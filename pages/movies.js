@@ -15,18 +15,18 @@ class Movies extends React.Component{
 
     static async getInitialProps(context){
         const {query} = context;
-        console.log(query);
+        //console.log(query);
         let url ='/brief';
         
         if(query.substring){url=`/find/title/${query.substring}`};
-        console.log(`http://localhost:8080/api${url}`);
+        //console.log(`http://localhost:8080/api${url}`);
         const res = await fetch(`http://localhost:8080/api${url}`);
         const data = await res.json();
         return {data};
     }
 
     sortBy = (e) =>{
-        console.log(e.target.name);
+        //console.log(e.target.name);
         if(e.target.name === 'title'){
         this.state.movies.sort((a,b)=>{ if(a.title > b.title){return 1}
                                             if(a.title < b.title){return -1}
@@ -50,7 +50,6 @@ class Movies extends React.Component{
     getFilteredMovies = async (url) =>{
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data);
         this.setState({movies: data});
     }
 

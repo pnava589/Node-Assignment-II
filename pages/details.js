@@ -17,10 +17,10 @@ class Details extends React.Component{
         };
     }
     static async getInitialProps({query}){
-        console.log(query);
+        //console.log(query);
         let url ='/movies/102';
         if(query.id){url=`/movies/${query.id}`};
-        console.log(`http://localhost:8080/api${url}`);
+        //console.log(`http://localhost:8080/api${url}`);
         const res = await fetch(`http://localhost:8080/api${url}`);
         const movie = await res.json();
         return {movie}

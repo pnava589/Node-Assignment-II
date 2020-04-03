@@ -20,7 +20,7 @@ componentDidUpdate(prevProps) {
 
 
 componentDidMount(){
-    console.log('favorites mounts');
+    //console.log('favorites mounts');
     
 }
 

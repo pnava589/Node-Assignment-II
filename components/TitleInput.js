@@ -29,7 +29,7 @@ class TitleInput extends React.Component{
                                 Title
                         </Form.Label>
                         <Col sm={10} md={10} lg={8}>
-                            <Form.Control type="text" name="title" onChange={this.onChange} placeholder="John Whick"/>
+                            <Form.Control type="text" name="title" onChange={this.onChange} placeholder="Love"/>
                         </Col>
                     </Form.Row>
                     <Form.Row>

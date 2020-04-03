@@ -9,11 +9,11 @@ const deleteFavorite = async(id) =>{
         headers:{'Content-type':'application/json'},
         body:JSON.stringify({"id":id})
         };
-        console.log(options.body);
+        //console.log(options.body);
         
         const resp = await fetch('http://localhost:8080/api/favorites',options);
         const data = await resp.json();
-        console.log(data);
+        //console.log(data);
         }
         catch(err){
             console.log('delete error: '+err);

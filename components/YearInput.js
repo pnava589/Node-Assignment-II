@@ -11,7 +11,7 @@ class YearInput extends React.Component{
         }
     }
     onClick=(e)=>{
-        if(e.target.id=="between"){
+        if(e.target.id=="betweenYear"){
             this.setState({
                 afterDisabled: false,
                 beforeDisabled: false,
@@ -66,7 +66,7 @@ class YearInput extends React.Component{
     render(){
         return(
             <Form onSubmit={this.handleSearch}>
-            <Form.Group controlId={this.props.controlId}>
+            <Form.Group>
                 <Form.Row>
                     <Form.Label column sm={2} md={2} lg={2} className="text-left align-middle align-text-middle">
                             Year
@@ -74,13 +74,13 @@ class YearInput extends React.Component{
                     <Col sm={10} md={10} lg={2}>
                         <Form.Check type="radio" id="after" name="year" label="After" value="after" onClick={this.onClick}/>
                         <Form.Check type="radio" id="before" name="year" label="Before" value="before" onClick={this.onClick}/>
-                        <Form.Check type="radio" id="between" name="year" label="Between" value="between" onClick={this.onClick}/>
+                        <Form.Check type="radio" id="betweenYear" name="year" label="Between" value="between" onClick={this.onClick}/>
                     </Col>
                     <Col sm={10} md={10} lg={3} >
-                        <Form.Control disabled={this.state.afterDisabled} onChange={this.onChange} type="number" name="after" value={this.state.after}/>
+                        <Form.Control id="afterYear" disabled={this.state.afterDisabled} onChange={this.onChange} type="number" name="after" value={this.state.after}/>
                     </Col>
                     <Col sm={10} md={10} lg={3} >
-                        <Form.Control disabled={this.state.beforeDisabled} onChange={this.onChange} type="number" name="before" value={this.state.before}/>
+                        <Form.Control id="beforeYear" disabled={this.state.beforeDisabled} onChange={this.onChange} type="number" name="before" value={this.state.before}/>
                     </Col>
                 </Form.Row>
                 <Form.Row>

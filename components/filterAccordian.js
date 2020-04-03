@@ -31,8 +31,7 @@ const YearFilter=(props)=>{
                 </Card.Header>
                 <Accordion.Collapse eventKey="1">
                     <Card.Body>
-                       <YearInput 
-                       controlId="formYear"
+                       <YearInput
                        filterFunction={props.filterFunction}
                        />
                     </Card.Body>
@@ -53,7 +52,6 @@ const RatingFilter =(props)=>{
                         <RangeInput 
                         name="Rating" 
                         title="Under" 
-                        controlId="formRating"
                         filterFunction={props.filterFunction}
                         />
                     </Card.Body>
