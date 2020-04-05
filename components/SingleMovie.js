@@ -26,7 +26,7 @@ class SingleMovie extends React.Component{
         body:JSON.stringify(this.state.body)
         };
         
-        const resp = await fetch('http://localhost:8080/api/favorites',options);
+        const resp = await fetch('/api/favorites',options);
         const data = await resp.json();
         await this.props.getFavorites();
         }

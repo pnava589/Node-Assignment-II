@@ -38,12 +38,12 @@ class RangeInput extends React.Component{
         if(type=="between"){
             const over =this.state.over;
             const under =this.state.under;
-            url = `http://localhost:8080/api/find/rating/${over}/${under}`;
+            url = `/api/find/rating/${over}/${under}`;
             //this.props.filterFunction(url);
         }
         else{
             const rating = this.state[e.target.rating.value];
-            url = `http://localhost:8080/api/find/rating/${type}/${rating}`
+            url = `/api/find/rating/${type}/${rating}`
         }
         this.props.filterFunction(url);
         e.preventDefault();

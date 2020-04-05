@@ -20,4 +20,4 @@ const movieSchema = new mongoose.Schema({
 
 });
 
-module.exports=mongoose.model('Movie',movieSchema,'movies-brief');
+module.exports=mongoose.model('AlternativeMovie',movieSchema,'movies-brief');

@@ -9,7 +9,7 @@ class TitleInput extends React.Component{
     }
     handleSearch=(e)=>{
         const title = this.state.title;
-        const url = `http://localhost:8080/api/find/title/${title}`;
+        const url = `/api/find/title/${title}`;
         this.props.filterFunction(url);
     }
     onChange=(e)=>{

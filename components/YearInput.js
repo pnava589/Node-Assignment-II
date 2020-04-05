@@ -51,12 +51,12 @@ class YearInput extends React.Component{
         if(type=="between"){
             const before =this.state.before;
             const after =this.state.after;
-            url = `http://localhost:8080/api/find/year/${after}/${before}`;
+            url = `/api/find/year/${after}/${before}`;
             //this.props.filterFunction(url);
         }
         else{
             const year = this.state[e.target.year.value];
-            url = `http://localhost:8080/api/find/year/${type}/${year}`
+            url = `/api/find/year/${type}/${year}`
         }
         this.props.filterFunction(url);
         e.preventDefault();

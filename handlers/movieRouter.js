@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const MovieModel = require('../Models/movie.js');
-const BriefMovieModel = require('../Models/alternativeMovie');
-const favoritesModel = require ('../models/Favorite');
-const userModel = require('../Models/User');
+const MovieModel = require('../Models/Movie.js');
+const BriefMovieModel = require('../Models/alternativeMovie.js');
+const userModel = require('../Models/User.js');
 const helper = require('./helper.js');
 
 

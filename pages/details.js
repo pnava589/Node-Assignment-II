@@ -17,24 +17,30 @@ class Details extends React.Component{
         };
     }
     static async getInitialProps({query}){
-        //console.log(query);
-        let url ='/movies/102';
-        if(query.id){url=`/movies/${query.id}`};
-        //console.log(`http://localhost:8080/api${url}`);
-        const res = await fetch(`http://localhost:8080/api${url}`);
-        const movie = await res.json();
-        return {movie}
+        try{
+            let url ='/movies/102';
+            if(query.id){url=`/movies/${query.id}`};
+            const res = await fetch(`/api${url}`);
+            const movie = await res.json();
+            return {movie}
+        }catch(err){
+            console.log(err);
+        }
     }
     viewCastDetails= async (e)=>{
-        const id = e.target.id;
-        const url = "https://api.themoviedb.org/3/person/"+id+"?api_key=c79963923fcbed164629915d65ccdfba";
-        const resp = await fetch(url);
-        const castData = await resp.json()
-        this.setState({
-            castData: castData,
-            showMovie: false,
-            showCast: true
-        });
+       try{
+            const id = e.target.id;
+            const url = "https://api.themoviedb.org/3/person/"+id+"?api_key=c79963923fcbed164629915d65ccdfba";
+            const resp = await fetch(url);
+            const castData = await resp.json()
+            this.setState({
+                castData: castData,
+                showMovie: false,
+                showCast: true
+            });
+       }catch(err){
+           console.log(err);
+       }
     }
     viewMovieDetails =(eventKey)=>{
         this.setState({

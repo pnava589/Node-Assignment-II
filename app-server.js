@@ -1,8 +1,9 @@
+require('dotenv').config();
 const express = require('express')
 const next = require('next')
 const parser = require('body-parser')
-const dev = process.env.NODE_DEV !== 'production' //true false
-const nextApp = next({ dev })
+const dev = process.env.NODE_ENV != 'production' //true false
+const nextApp = next({dev} )
 const handle = nextApp.getRequestHandler() //part of next config
 const mongoose = require('mongoose')
 const session = require('express-session');
@@ -11,7 +12,6 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const flash = require('express-flash');
 
-require('dotenv').config();
 
 require('./handlers/dataConnector').connect();
 

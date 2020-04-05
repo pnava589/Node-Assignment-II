@@ -14,15 +14,19 @@ class Movies extends React.Component{
     }
 
     static async getInitialProps(context){
-        const {query} = context;
-        //console.log(query);
-        let url ='/brief';
+        try{
+            const {query} = context;
+            //console.log(query);
+            let url ='/brief';
+            if(query.substring){url=`/find/title/${query.substring}`};
+            //console.log(`http://localhost:8080/api${url}`);
+            const res = await fetch(`/api${url}`);
+            const data = await res.json();
+            return {data};
+        }catch(err){
+            console.log(err)
+        }
         
-        if(query.substring){url=`/find/title/${query.substring}`};
-        //console.log(`http://localhost:8080/api${url}`);
-        const res = await fetch(`http://localhost:8080/api${url}`);
-        const data = await res.json();
-        return {data};
     }
 
     sortBy = (e) =>{
@@ -48,9 +52,13 @@ class Movies extends React.Component{
 
 
     getFilteredMovies = async (url) =>{
-        const res = await fetch(url);
-        const data = await res.json();
-        this.setState({movies: data});
+        try{
+            const res = await fetch(url);
+            const data = await res.json();
+            this.setState({movies: data});
+        }catch(err){
+            console.log(err);
+        }
     }
 
      componentDidMount(){
@@ -64,7 +72,7 @@ class Movies extends React.Component{
             headers:{'Content-type':'application/json'},
             };
 
-            const resp = await fetch('http://localhost:8080/api/favorites',options);
+            const resp = await fetch('/api/favorites',options);
             const data = await resp.json();
             this.setState({favorites:data.favorites});
             }

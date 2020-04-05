@@ -11,7 +11,7 @@ const deleteFavorite = async(id) =>{
         };
         //console.log(options.body);
         
-        const resp = await fetch('http://localhost:8080/api/favorites',options);
+        const resp = await fetch('/api/favorites',options);
         const data = await resp.json();
         //console.log(data);
         }

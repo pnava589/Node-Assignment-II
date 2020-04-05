@@ -2,9 +2,12 @@
   "name": "node-assignment-ii",
   "version": "1.0.0",
   "description": "**Please view `COMP4513 Assignment 2.pdf` for instructions**",
-  "main": "index.js",
+  "main": "app-server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "next",
+    "build": "next build",
+    "start": "NODE_ENV=production node app-server.js"
   },
   "repository": {
     "type": "git",
