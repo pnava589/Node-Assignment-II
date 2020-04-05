@@ -110,7 +110,7 @@ router.get('/find/title/:substring', helper.ensureAuthenticated, async(req,resp)
             }  
         });
 
-        router.get('/brief', async(req,resp)=>{
+        router.get('/brief', helper.ensureAuthenticated, async(req,resp)=>{
             try{
                 
                const matchMovies = await BriefMovieModel.find({});

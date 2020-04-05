@@ -1,5 +1,5 @@
 import Layout from '../components/Layout';
-import AboutJumbotron from '../components/AboutJumbotron';
+import AboutJumbotron from '../components/About';
 import {Modal} from 'react-bootstrap';
 
 class About extends React.Component{
