@@ -4,10 +4,10 @@ import CustomModal from "./CustomImageModal";
 
 const CastDetails =(props)=>{
     const cast = props.cast;
-    const imgUrl = "https://image.tmdb.org/t/p/w342"+cast.profile_path;
+    const imgUrl = "https://image.tmdb.org/t/p/w500"+cast.profile_path;
     const largeUrl = "https://image.tmdb.org/t/p/w780"+cast.profile_path;
     const imdbLink = "https://www.imdb.com/name/"+cast.imdb_id;
-    const style = {height: 'inherit',overflowY: "scroll", overflowX: "hidden"};
+    const style = {height: 'inherit',overflowY: "scroll"};
     return(
         <Card className={props.className}>
             <Card.Header>
@@ -20,20 +20,18 @@ const CastDetails =(props)=>{
                     </Nav.Item>
                 </Nav>
             </Card.Header>
-            <Card.Body style={{overflowY: 'scroll'}}>
+            <Card.Body style={{overflowY: 'scroll', height: '90vh'}}>
                 <Card.Title>{cast.name}</Card.Title>
-                <Row noGutters style={{height: '72vh'}}>
-                    <Col xs={12} md={6} style={style}>
-                        <CustomModal label={cast.name} smUrl={imgUrl} lgUrl={largeUrl}/>
-                    </Col>
-                    <Col xs={12} md={6} style={style}>
+                <Row>
+                    <CustomModal label={cast.name} smUrl={imgUrl} lgUrl={largeUrl}/>
+                    <Col xs={12} lg={6} style={style}>
                         <DetailsCard label="Details">
-                            <p>Born: {cast.birthday}, {cast.place_of_birth}</p>
-                            <p><a href={imdbLink}>Imdb Link</a></p>
-                        </DetailsCard>
-                        <DetailsCard label="Biography">
-                            <p>{cast.biography}</p>
-                        </DetailsCard>
+                                    <p>Born: {cast.birthday}, {cast.place_of_birth}</p>
+                                    <p><a href={imdbLink}>Imdb Link</a></p>
+                            </DetailsCard>
+                            <DetailsCard label="Biography">
+                                <p>{cast.biography}</p>
+                            </DetailsCard>
                     </Col>
                 </Row>
             </Card.Body>

@@ -1,14 +1,15 @@
-import { Card, Row, Col, Tooltip, OverlayTrigger, Modal, Nav } from "react-bootstrap";
+import { Card, Row, Col, Tooltip, OverlayTrigger, Modal, Nav, CardColumns } from "react-bootstrap";
 import MovieDetailsCard from "./MovieDetailsCard";
 import DetailsCard from "./DetailsCard";
 import CustomModal from "./CustomImageModal";
+import Stars from "./stars";
 
 
 const MovieDetails =(props)=>{
     const movie = props.movie[0];
-    const imgUrl = `https://image.tmdb.org/t/p/w342${movie.poster}`;
+    const imgUrl = `https://image.tmdb.org/t/p/w500${movie.poster}`;
     const largeUrl = `https://image.tmdb.org/t/p/w780${movie.poster}`;
-    const style = {height: 'inherit',overflowY: "scroll", overflowX: "hidden"};
+    const style = {height: 'inherit',overflowY: "scroll"};
     //make this accordian if have time
     return(
         <Card className={props.className}>
@@ -19,22 +20,53 @@ const MovieDetails =(props)=>{
                     </Nav.Item>
                 </Nav>
             </Card.Header>
-            <Card.Body style={{overflowY: 'scroll'}}>
-                <Card.Title>{movie.title}</Card.Title>
-                <Row noGutters style={{height: '72vh'}}>
-                    <Col xs={12} md={6} style={style}>
-                        <CustomModal label={movie.title} smUrl={imgUrl} lgUrl={largeUrl}/>
-                    </Col>
-                    <Col xs={12} md={6} style={style}>
+            <Card.Body style={{overflowY: 'scroll', height: '90vh'}}>
+                <Card.Title>
+                    {movie.title}
+                    <Stars num_stars={movie.ratings.average}/>
+                </Card.Title>
+
+                <Row >
+                    <CustomModal label={movie.title} smUrl={imgUrl} lgUrl={largeUrl}/>
+                    <Col xs={12} lg={6} style={style}>
                         <MovieDetailsCard movie={movie}/>
+                    </Col>
+                </Row>
+                <Row>
+                    <CardColumns className="col-12">
                         <DetailsCard label="Related Genres" data={movie.details.genres}/>
                         <DetailsCard label="Production Companies" data={movie.production.companies}/>
                         <DetailsCard label="Production Countries" data={movie.production.countries}/>
                         <DetailsCard label="Keywords" data={movie.details.keywords}/>
-                    </Col>
+                    </CardColumns>
                 </Row>
             </Card.Body>
         </Card>
     )
 }
 export default MovieDetails;
+/*
+ <Card.Body style={{overflowY: 'scroll'}}>
+                <Card.Title>{movie.title}</Card.Title>
+                <Row noGutters style={{height: '72vh'}}>
+                    <Col xs={12} md={12} lg={6} style={style}>
+                        <CustomModal label={movie.title} smUrl={imgUrl} lgUrl={largeUrl}/>
+                    </Col>
+                    <Col xs={12} md={12} lg={6} style={style}>
+                        <MovieDetailsCard movie={movie}/>
+                    </Col>
+                    <Col xs={12} md={12} lg={6} style={style}>
+                        <DetailsCard label="Related Genres" data={movie.details.genres}/>
+                    </Col>
+                    <Col xs={12} md={12} lg={6} style={style}>
+                        <DetailsCard label="Production Companies" data={movie.production.companies}/>
+                    </Col>
+                    <Col xs={12} md={12} lg={6} style={style}>
+                        <DetailsCard label="Production Countries" data={movie.production.countries}/>
+                    </Col>
+                    <Col xs={12} md={12} lg={6} style={style}>
+                        <DetailsCard label="Keywords" data={movie.details.keywords}/>
+                    </Col>
+                </Row>
+            </Card.Body>
+*/
