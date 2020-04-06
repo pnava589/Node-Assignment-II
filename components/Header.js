@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFilm} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import About from './About';
+import Profile from '../pages/profile';
+
 
 class Header extends React.Component{
     constructor(props){
@@ -30,11 +32,15 @@ class Header extends React.Component{
                 </Nav.Link> 
             </Nav.Item>
             <Nav.Item as={ButtonGroup}>
+            <Link href="/movies">
+                    <Profile/>
+                </Link>
                 <Link href="/movies">
                     <div className="mr-2">
                     <Button >Browse</Button>
                     </div>
                 </Link>
+                
                 <About/>
             </Nav.Item>
         </Navbar>

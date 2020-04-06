@@ -7,6 +7,25 @@ const helper = require('./helper.js');
 
 
 
+
+router.get('/profile', helper.ensureAuthenticated, async(req,resp)=>{
+  
+    try{
+        
+        let query = {email:req.user.email};
+        const user = await userModel.findOne(query);
+        if(user){
+            resp.json(user);
+        }
+        else{
+            resp.json({message:"could not find the user"});
+        }
+    }
+    catch(err){
+        resp.status(400).json({message:err.message})
+    }
+});
+
 router.post('/favorites', helper.ensureAuthenticated, async(req,resp)=>{
     console.log('is posting');
     try{
