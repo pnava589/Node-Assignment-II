@@ -1,4 +1,4 @@
-import { Tooltip, OverlayTrigger, Modal, Button, Container, Row, Col } from 'react-bootstrap';
+import { Tooltip, OverlayTrigger, Modal, Button, Container, Row, Col, Image } from 'react-bootstrap';
 class CustomModal extends React.Component{
     constructor(props){
         super(props);
@@ -29,11 +29,11 @@ class CustomModal extends React.Component{
                             Click to enlarge image
                             </Tooltip>;
         return(
-            <div>
+            <Col xs={12} lg={6}>
                 <OverlayTrigger
                 placement="right"
                 overlay={renderTip}>
-                    <img src={this.state.smUrl} onClick={this.show}/>
+                    <Image src={this.state.smUrl} onClick={this.show} fluid/>
                 </OverlayTrigger>
                 <Modal
                 show={this.state.show} 
@@ -53,7 +53,7 @@ class CustomModal extends React.Component{
                         </Modal.Footer>
                     </Container>
                 </Modal>
-            </div>
+            </Col>
         )
     }
 }
