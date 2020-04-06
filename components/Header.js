@@ -7,11 +7,12 @@ import Link from 'next/link';
 import About from './About';
 import Profile from '../pages/profile';
 
+import LogoutButton from './LogOutButton';
 
 class Header extends React.Component{
     constructor(props){
         super(props);
-        this.state = {display:false};
+        this.state = {display:false, is_authenticated: this.props.is_authenticated};
     }
   
     display =()=>{
@@ -32,9 +33,10 @@ class Header extends React.Component{
                 </Nav.Link> 
             </Nav.Item>
             <Nav.Item as={ButtonGroup}>
-            <Link href="/movies">
-                    <Profile/>
-                </Link>
+            {
+                    this.state.is_authenticated !== null && this.state.is_authenticated !== false
+                    && <Profile />
+            }
                 <Link href="/movies">
                     <div className="mr-2">
                     <Button >Browse</Button>
@@ -42,6 +44,10 @@ class Header extends React.Component{
                 </Link>
                 
                 <About/>
+                {
+                    this.state.is_authenticated !== null && this.state.is_authenticated !== false
+                    && <LogoutButton />
+                }
             </Nav.Item>
         </Navbar>
 

@@ -19,6 +19,10 @@ function handleAll(nextApp, app, handle){
     app.get('/login', (req, resp)=>{
         return nextApp.render(req,resp, '/login', req.query);
     });
+    app.get('/logout', helper.ensureAuthenticated, (req,resp)=>{
+        req.logout();
+        resp.redirect('/login');
+    });
     app.get('/login/error', (req, resp)=>{
         //console.log(req.flash('error'));
         //if(req.flash('error').message == null) req.flash('error', 'Please log in to view that!');

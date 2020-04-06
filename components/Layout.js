@@ -15,7 +15,7 @@ export default function Layout(props){
                 />
                 <link href="https://use.fontawesome.com/releases/v5.12.1/css/svg-with-js.css" rel="stylesheet"></link>
             </Head>
-            <Header/>
+            <Header is_authenticated={props.is_authenticated}/>
             <Container fluid className="p-0" style={style}>
                 {props.children}
             </Container>

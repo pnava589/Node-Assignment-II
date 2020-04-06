@@ -22,7 +22,7 @@ const [profile,setProfile] = useState({});
 
         return(
             <>
-            {profile ? <Profiled profile={profile}/>: <Profiled/>}
+            {profile ? <Profiled profile={profile} img={profile.picture}/>: <Profiled/>}
             </>
 
         );

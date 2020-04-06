@@ -9,7 +9,7 @@ class Login extends React.Component{
   }
   render(){
     return(
-      <Layout>
+      <Layout is_authenticated={false}>
         {this.state.message && this.state.show && 
               <Alert className="mb-0"variant="danger" onClose={()=>this.setState({show: false})} dismissible>
                   <Alert.Heading>Login error</Alert.Heading>
@@ -23,11 +23,6 @@ class Login extends React.Component{
   }
 }
 Login.getInitialProps=({query: m})=>{
-  /*if(m.message==null){
-    m.message='Please login to view that resource';
-    console.log("here"+m.message)
-    return m;
-  } */
   return {message: m.message};
 }
 export default Login;

@@ -22,7 +22,7 @@ export default function Profiledisplay(props) {
             <Modal.Header closeButton>
                 <h1>Profile</h1>
             </Modal.Header>
-            {profile ? <img src={JSON.stringify(props.profile.picture)} className='rounded-circle'/> : <div>Loading...</div>}
+            {profile ? console.log(props.img) : <div>Loading...</div>}
             <Modal.Footer>
                 <Button onClick={()=>setDisplay(false)}>
                     Close
