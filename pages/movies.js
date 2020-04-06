@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import Favorites from '../components/Favorites';
 import Filter from '../components/filter';
 import MoviesList from '../components/MoviesList';
+import Sort from '../components/Sort';
 import fetch from 'isomorphic-unfetch';
 
 
@@ -30,7 +31,9 @@ class Movies extends React.Component{
     }
 
     sortBy = (e) =>{
-        //console.log(e.target.name);
+        console.log(e.target.name);
+        console.log(e.target.value);
+
         if(e.target.name === 'title'){
         this.state.movies.sort((a,b)=>{ if(a.title > b.title){return 1}
                                             if(a.title < b.title){return -1}
@@ -87,6 +90,7 @@ class Movies extends React.Component{
                 <Layout>
                     <Filter filterFunction={this.getFilteredMovies}/>
                     <Favorites favorites={this.state.favorites} getFavorites={this.getFavorites}/>
+                    <Sort sortBy={this.sortBy}></Sort>
                     <MoviesList movies={this.state.movies} getFavorites={this.getFavorites} sortBy={this.sortBy}/>
                 </Layout>
             );

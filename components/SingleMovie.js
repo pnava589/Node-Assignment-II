@@ -36,15 +36,15 @@ class SingleMovie extends React.Component{
     };
 
     render(){
-        const imgUrl = "https://image.tmdb.org/t/p/w342"+this.state.poster;
+        const imgUrl = "https://image.tmdb.org/t/p/w185"+this.state.poster;
         const titleStyle ={text:'center'};
         console.log(imgUrl);
         return(
-            <div className='col-auto mb-4'>
-            <Card style={{width:'21rem',height:'52rem'}}>
+            <div className='col-auto mb-5'>
+            <Card style={{width:'15rem',height:'35rem'}}>
             <Button className ='btn btn-secondary' onClick={this.addFavorite} style={{'zIndex':4,position:'absolute',left:'4%',top:'1%',margin:'auto'}}><FontAwesomeIcon icon='thumbs-up'/></Button>
                 <Link href={{pathname:'/details',query:{id:this.state.id}}}>
-                <Card.Img src = {imgUrl} style={{height:'32rem',width:'21rem'}} alt={this.state.title}/>
+                <Card.Img src = {imgUrl} alt={this.state.title}/>
                 </Link>
                 <Card.Body>
                     <Card.Title>{this.state.title}</Card.Title>
@@ -56,9 +56,6 @@ class SingleMovie extends React.Component{
                         <div><b>Rating:</b> {this.state.rating}</div>
                         </Col>
                     </Row>
-                    <Card.Text>{this.state.overview.length > this.state.max_length ?
-                        this.state.overview.substring(0,this.state.max_length)+'...'
-                        : this.state.overview}</Card.Text>
                 </Card.Body>
                 <Card.Footer>
                    <Row  className='justify-content-center'>     
