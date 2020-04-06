@@ -5,11 +5,12 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFilm} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import About from './About';
+import LogoutButton from './LogOutButton';
 
 class Header extends React.Component{
     constructor(props){
         super(props);
-        this.state = {display:false};
+        this.state = {display:false, is_authenticated: this.props.is_authenticated};
     }
   
     display =()=>{
@@ -36,6 +37,10 @@ class Header extends React.Component{
                     </div>
                 </Link>
                 <About/>
+                {
+                    this.state.is_authenticated !== null && this.state.is_authenticated !== false
+                    && <LogoutButton />
+                }
             </Nav.Item>
         </Navbar>
 
