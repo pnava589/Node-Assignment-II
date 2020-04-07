@@ -4,7 +4,7 @@ import SingleMovie from './SingleMovie';
 
 const MoviesList=(props)=>{
     return(
-        <Row lg={4}>
+        <Row lg={4} style={{height: "40em",overflowY:'scroll'}}>
         
             <CardDeck className='justify-content-center'>
             {props.movies.map(item =>

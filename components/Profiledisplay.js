@@ -65,11 +65,11 @@ class Profile extends React.Component{
 
             <Row className='mt-2'>
                 <Col>
-                   <div><FontAwesomeIcon icon='thumbs-up'/></div> <p>{`${this.state.country}, ${this.state.city}`}</p>
+                   <div className='justify-content-center'><FontAwesomeIcon icon='map-marker-alt'/></div> <p>{`${this.state.country}, ${this.state.city}`}</p>
                 </Col>
 
                 <Col>
-                <div><FontAwesomeIcon icon='clock'/></div><p>{this.state.date_joined}</p>
+                <div className='justify-content-center'><FontAwesomeIcon icon='clock'/></div><p>{this.state.date_joined}</p>
                 </Col>
             </Row>
 

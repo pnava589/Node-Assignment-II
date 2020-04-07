@@ -19,11 +19,6 @@ componentDidUpdate(prevProps) {
   }
 
 
-componentDidMount(){
-    //console.log('favorites mounts');
-    
-}
-
 render(){
     return(
     <div className='col-md-12 m-1'>

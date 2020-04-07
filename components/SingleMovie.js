@@ -38,7 +38,7 @@ class SingleMovie extends React.Component{
     render(){
         const imgUrl = "https://image.tmdb.org/t/p/w185"+this.state.poster;
         const titleStyle ={text:'center'};
-        console.log(imgUrl);
+        
         return(
             <div className='col-auto mb-5'>
             <Card style={{width:'15rem',height:'35rem'}}>

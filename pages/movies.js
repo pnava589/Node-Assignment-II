@@ -2,6 +2,7 @@ import Layout from '../components/Layout';
 import Favorites from '../components/Favorites';
 import Filter from '../components/filter';
 import MoviesList from '../components/MoviesList';
+import LoadFavorites from '../components/LoadFavorites';
 import Sort from '../components/Sort';
 import fetch from 'isomorphic-unfetch';
 
@@ -11,7 +12,7 @@ import fetch from 'isomorphic-unfetch';
 class Movies extends React.Component{
     constructor(props){
         super(props);
-        this.state = {movies: this.props.data,favorites:[],show:true,list:[]};
+        this.state = {movies: this.props.data,favorites:[],show:true,list:[],refreshFavs:false};
     }
 
     static async getInitialProps(context){
@@ -21,7 +22,6 @@ class Movies extends React.Component{
             //console.log(query);
             let url ='/brief';
             if(query.substring){url=`/find/title/${query.substring}`};
-            //console.log(`http://localhost:8080/api${url}`);
             const res = await fetch(`/api${url}`);
             const data = await res.json();
             return {data};
@@ -67,31 +67,15 @@ class Movies extends React.Component{
         }
     }
 
-     componentDidMount(){
-        this.getFavorites();
-    }
+     
     show=()=>{
         this.setState({show: true});
     }
     hide=()=>{
         this.setState({show: false});
     }
-    getFavorites = async() =>{
-        try{
-            this.show();
-            const options ={
-            method:'GET',
-            headers:{'Content-type':'application/json'},
-            };
-
-            const resp = await fetch('/api/favorites',options);
-            const data = await resp.json();
-            this.setState({favorites:data.favorites, show: false});
-            
-            }
-            catch(err){
-                console.log('fecth error: '+err);
-            }
+    getFavorites = () =>{
+        this.setState({refreshFavs:!this.state.refreshFavs});
     }
      
     render(){
@@ -99,7 +83,7 @@ class Movies extends React.Component{
             return(
                 <Layout show={this.state.show}>
                     <Filter filterFunction={this.getFilteredMovies}/>
-                    <Favorites favorites={this.state.favorites} getFavorites={this.getFavorites}/>
+                    <LoadFavorites refresh={this.getFavorites}/>
                     <Sort sortBy={this.sortBy}></Sort>
                     <MoviesList show={this.show} movies={this.state.movies} getFavorites={this.getFavorites} sortBy={this.sortBy}/>
                 </Layout>
