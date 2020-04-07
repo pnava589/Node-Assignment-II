@@ -8,7 +8,8 @@ const MoviesList=(props)=>{
         
             <CardDeck className='justify-content-center'>
             {props.movies.map(item =>
-                        <SingleMovie getFavorites={props.getFavorites} 
+                        <SingleMovie getFavorites={props.getFavorites}
+                                     show={props.show} 
                                      id={item.id}
                                      key={item.id}
                                      poster={item.poster}

@@ -11,11 +11,12 @@ import fetch from 'isomorphic-unfetch';
 class Movies extends React.Component{
     constructor(props){
         super(props);
-        this.state = {movies: this.props.data,favorites:[],loaded:false,list:[]};
+        this.state = {movies: this.props.data,favorites:[],show:true,list:[]};
     }
 
     static async getInitialProps(context){
         try{
+            //console.log(context.req.protocol+context.req.get('Host'));
             const {query} = context;
             //console.log(query);
             let url ='/brief';
@@ -33,7 +34,7 @@ class Movies extends React.Component{
     sortBy = (e) =>{
         console.log(e.target.name);
         console.log(e.target.value);
-
+        this.show();
         if(e.target.name === 'title'){
         this.state.movies.sort((a,b)=>{ if(a.title > b.title){return 1}
                                             if(a.title < b.title){return -1}
@@ -49,16 +50,18 @@ class Movies extends React.Component{
                                                 if(a.ratings.average < b.ratings.average){return -1}
                                                 return 0;})
         }
-        this.setState({movies:this.state.movies});
+        this.setState({movies:this.state.movies, show: false});
         
     }
 
 
     getFilteredMovies = async (url) =>{
         try{
+            this.show();
             const res = await fetch(url);
             const data = await res.json();
-            this.setState({movies: data});
+            this.setState({movies: data, show: false});
+            
         }catch(err){
             console.log(err);
         }
@@ -67,9 +70,15 @@ class Movies extends React.Component{
      componentDidMount(){
         this.getFavorites();
     }
-    
+    show=()=>{
+        this.setState({show: true});
+    }
+    hide=()=>{
+        this.setState({show: false});
+    }
     getFavorites = async() =>{
         try{
+            this.show();
             const options ={
             method:'GET',
             headers:{'Content-type':'application/json'},
@@ -77,7 +86,8 @@ class Movies extends React.Component{
 
             const resp = await fetch('/api/favorites',options);
             const data = await resp.json();
-            this.setState({favorites:data.favorites});
+            this.setState({favorites:data.favorites, show: false});
+            
             }
             catch(err){
                 console.log('fecth error: '+err);
@@ -87,11 +97,11 @@ class Movies extends React.Component{
     render(){
 
             return(
-                <Layout>
+                <Layout show={this.state.show}>
                     <Filter filterFunction={this.getFilteredMovies}/>
                     <Favorites favorites={this.state.favorites} getFavorites={this.getFavorites}/>
                     <Sort sortBy={this.sortBy}></Sort>
-                    <MoviesList movies={this.state.movies} getFavorites={this.getFavorites} sortBy={this.sortBy}/>
+                    <MoviesList show={this.show} movies={this.state.movies} getFavorites={this.getFavorites} sortBy={this.sortBy}/>
                 </Layout>
             );
         
