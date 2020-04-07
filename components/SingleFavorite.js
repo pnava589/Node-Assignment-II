@@ -1,6 +1,6 @@
 import { Row, Col, Button, Container } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
-
+import  Link  from 'next/link';
 
 const deleteFavorite = async(id) =>{
     try{
@@ -33,7 +33,9 @@ const SingleFavorite=(props)=>{
                     <Button className="close" aria-label="Close" onClick={() =>deleteFavorite(props.id).then(props.getFavorites)}>
                         <span aria-hidden="true">&times;</span>
                     </Button>
+                    <Link href={{pathname:'/details',query:{id:props.id}}}>
                     <img className="img-thumbnail" src={`https://image.tmdb.org/t/p/w92${props.poster}`} alt={props.title} title={props.title}/>
+                    </Link>
                 </Col>
            
     );
