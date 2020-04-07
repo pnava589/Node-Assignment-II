@@ -40,6 +40,8 @@ const MovieDetailsCard =(props)=>{
                 </Col>
             </Card.Body>
         </Card>
+
+        
     );
 }
 export default MovieDetailsCard;

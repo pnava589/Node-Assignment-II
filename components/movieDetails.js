@@ -11,7 +11,26 @@ const MovieDetails =(props)=>{
     const largeUrl = `https://image.tmdb.org/t/p/w780${movie.poster}`;
     const style = {height: 'inherit',overflowY: "scroll"};
     //make this accordian if have time
+
+    /*const addFavorite = async() =>{
+        try{
+            const options ={
+            method:'POST',
+            headers:{'Content-type':'application/json'},
+            body:JSON.stringify(this.state.body)
+            };
+            
+            const resp = await fetch('/api/favorites',options);
+            const data = await resp.json();
+            await this.props.getFavorites();
+            }
+            catch(err){
+                console.log('fecth error: '+err);
+            }
+    }*/
     return(
+        
+        
         <Card className={props.className}>
             <Card.Header>
                 <Nav variant="tabs" defaultActiveKey="movie">
@@ -42,6 +61,7 @@ const MovieDetails =(props)=>{
                 </Row>
             </Card.Body>
         </Card>
+        
     )
 }
 export default MovieDetails;

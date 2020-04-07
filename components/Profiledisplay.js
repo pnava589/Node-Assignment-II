@@ -50,6 +50,7 @@ class Profile extends React.Component{
             show={this.state.show} 
             onHide={this.hide}
             size="sm">
+                
             <Row className='justify-content-center'>
             <Image src={this.state.img} className='rounded-circle' style={{zIndex:4,position:'absolute',top:'15%'}}/>
             </Row>

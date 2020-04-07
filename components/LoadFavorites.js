@@ -9,7 +9,11 @@ class LoadFavorites extends React.Component{
 
    
  
-
+    componentDidUpdate(prevProps){
+        if(this.props.refresh !== prevProps.refresh){
+            this.getFavorites();
+        }
+    }
 
     componentDidMount=async()=>{
     this.getFavorites();

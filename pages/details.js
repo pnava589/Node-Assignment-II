@@ -5,6 +5,7 @@ import MovieDetails from '../components/MovieDetails';
 import { Row } from 'react-bootstrap';
 import CastCrewList from '../components/CastCrewList';
 import CastDetails from '../components/CastDetails';
+import LoadFavorites from '../components/LoadFavorites';
 
 class Details extends React.Component{
     constructor(props){
@@ -54,10 +55,18 @@ class Details extends React.Component{
             showCast: false
         });
     }
+
+    hide =()=>{
+        this.setState({show:false});
+    }
+    show=()=>{
+        this.setState({show: true});
+    }
     //possibly make the cast details persist...
     render(){
         return(
             <Layout show={this.state.show}>
+                <LoadFavorites hide={this.hide} show={this.show}/>
                 <Row noGutters>
                     {
                         this.state.showMovie && <MovieDetails movie={this.state.movie} className="col-xs-12 col-md-7"/>
