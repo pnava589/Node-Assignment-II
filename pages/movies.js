@@ -17,7 +17,6 @@ class Movies extends React.Component{
 
     static async getInitialProps(context){
         try{
-            //console.log(context.req.protocol+context.req.get('Host'));
             const {query} = context;
             //console.log(query);
             let url ='/brief';
@@ -74,9 +73,9 @@ class Movies extends React.Component{
     hide=()=>{
         this.setState({show: false});
     }
-    getFavorites = () =>{
+    /*getFavorites = () =>{
         this.setState({refreshFavs:!this.state.refreshFavs});
-    }
+    }*/
      
     render(){
 
