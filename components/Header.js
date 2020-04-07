@@ -5,7 +5,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faFilm} from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import About from './About';
-import Profile from '../pages/profile';
+import Profile from './Profiledisplay';
 
 import LogoutButton from './LogOutButton';
 
@@ -35,14 +35,13 @@ class Header extends React.Component{
             <Nav.Item as={ButtonGroup}>
             {
                     this.state.is_authenticated !== null && this.state.is_authenticated !== false
-                    && <Profile />
+                    && <Profile/>
             }
                 <Link href="/movies">
                     <div className="mr-2">
                     <Button >Browse</Button>
                     </div>
                 </Link>
-                
                 <About/>
                 {
                     this.state.is_authenticated !== null && this.state.is_authenticated !== false
