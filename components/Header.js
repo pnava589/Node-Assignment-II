@@ -34,14 +34,18 @@ class Header extends React.Component{
             </Nav.Item>
             <Nav.Item as={ButtonGroup}>
             {
-                    this.state.is_authenticated !== null && this.state.is_authenticated !== false
-                    && <Profile/>
+                this.state.is_authenticated !== null && this.state.is_authenticated !== false
+                && <Profile/>
             }
+            {  
+                this.state.is_authenticated !== null && this.state.is_authenticated !== false
+                &&
                 <Link href="/movies">
                     <div className="mr-2">
                     <Button >Browse</Button>
                     </div>
                 </Link>
+            }
                 <About/>
                 {
                     this.state.is_authenticated !== null && this.state.is_authenticated !== false

@@ -12,7 +12,7 @@ router.get('/profile', helper.ensureAuthenticated, async(req,resp)=>{
   
     try{
         
-        let query = {email:req.user.email};
+        let query = {email:'al@ace.ca'};
         const user = await userModel.findOne(query);
         if(user){
             resp.json(user);
