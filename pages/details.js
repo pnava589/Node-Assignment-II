@@ -5,7 +5,6 @@ import MovieDetails from '../components/MovieDetails';
 import { Row } from 'react-bootstrap';
 import CastCrewList from '../components/CastCrewList';
 import CastDetails from '../components/CastDetails';
-import LoadingAnimation from '../components/LoadingAnimation';
 
 class Details extends React.Component{
     constructor(props){
@@ -28,6 +27,9 @@ class Details extends React.Component{
         }catch(err){
             console.log(err);
         }
+    }
+    componentDidMount=async()=>{
+        this.setState({show: false})
     }
     viewCastDetails= async (e)=>{
        try{
@@ -55,8 +57,7 @@ class Details extends React.Component{
     //possibly make the cast details persist...
     render(){
         return(
-            <Layout>
-                <LoadingAnimation show={this.state.show}/>
+            <Layout show={this.state.show}>
                 <Row noGutters>
                     {
                         this.state.showMovie && <MovieDetails movie={this.state.movie} className="col-xs-12 col-md-7"/>

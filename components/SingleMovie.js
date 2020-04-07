@@ -60,7 +60,7 @@ class SingleMovie extends React.Component{
                 <Card.Footer>
                    <Row  className='justify-content-center'>     
                             <Link href={{pathname:'/details',query:{id:this.state.id}}}>
-                                <Button className='btn btn-primary'>See Details</Button>
+                                <Button onClick={this.props.show} className='btn btn-primary'>See Details</Button>
                             </Link>
                     </Row>
                 </Card.Footer>

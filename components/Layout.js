@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Header from './Header.js';
 import { Container } from 'react-bootstrap';
+import LoadingAnimation from './LoadingAnimation.js';
 export default function Layout(props){
     const style = {overflow: 'hidden'};
     return(
@@ -19,6 +20,7 @@ export default function Layout(props){
             <Container fluid className="p-0" style={style}>
                 {props.children}
             </Container>
+            <LoadingAnimation show={props.show}/>
         </div>
     );
 }
