@@ -7,9 +7,6 @@ function handleAll(nextApp, app, handle){
     app.get('/home', helper.ensureAuthenticated, (req,resp) => {
         return nextApp.render(req,resp, '/home', req.query);
     });
-    app.get('/profile', helper.ensureAuthenticated, (req,resp) => {
-        return nextApp.render(req,resp, '/profile', req.query);
-    });
     app.get('/movies', helper.ensureAuthenticated, (req,resp) => {
         return nextApp.render(req,resp, '/movies', req.query);
     });
