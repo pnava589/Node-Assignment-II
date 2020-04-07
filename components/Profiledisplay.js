@@ -42,7 +42,7 @@ class Profile extends React.Component{
         return(
 
             <>
-            <div className="mr-2">
+            <div className="ml-2">
                     <Button onClick={this.show}>Profile</Button>
             </div>
             <Modal
