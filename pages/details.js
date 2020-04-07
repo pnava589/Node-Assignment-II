@@ -15,7 +15,8 @@ class Details extends React.Component{
             castData: {},
             showMovie: true,
             showCast: false,
-            show: true
+            show: true,
+            refresh: false
         };
     }
     static async getInitialProps({query}){
@@ -62,14 +63,17 @@ class Details extends React.Component{
     show=()=>{
         this.setState({show: true});
     }
+    getFavorites = () =>{
+        this.setState({refresh:!this.state.refresh});
+    }
     //possibly make the cast details persist...
     render(){
         return(
             <Layout show={this.state.show}>
-                <LoadFavorites hide={this.hide} show={this.show}/>
+                <LoadFavorites hide={this.hide} show={this.show} refresh={this.state.refresh}/>
                 <Row noGutters>
                     {
-                        this.state.showMovie && <MovieDetails movie={this.state.movie} className="col-xs-12 col-md-7"/>
+                        this.state.showMovie && <MovieDetails refresh={this.getFavorites} movie={this.state.movie} show={this.show} hide={this.hide} className="col-xs-12 col-md-7"/>
                     }
                     {
                         this.state.showCast && <CastDetails view={this.viewMovieDetails} className="col-xs-12 col-md-7" cast={this.state.castData} />

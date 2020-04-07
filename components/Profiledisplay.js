@@ -1,10 +1,9 @@
 
 import { Jumbotron, Row, Col, Container, ListGroup,Modal,Button, Image} from 'react-bootstrap';
-import {useState,useEffect} from 'react';
 import fetch from 'isomorphic-unfetch';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { fas } from '@fortawesome/free-solid-svg-icons';
-import {library} from '@fortawesome/fontawesome-svg-core';
+import { faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
+
 
 
 
@@ -66,11 +65,11 @@ class Profile extends React.Component{
 
             <Row className='mt-2'>
                 <Col>
-                   <div className='justify-content-center'><FontAwesomeIcon icon='map-marker-alt'/></div> <p>{`${this.state.country}, ${this.state.city}`}</p>
+                   <div className='justify-content-center'><FontAwesomeIcon icon={faMapMarkerAlt}/></div> <p>{`${this.state.country}, ${this.state.city}`}</p>
                 </Col>
 
                 <Col>
-                <div className='justify-content-center'><FontAwesomeIcon icon='clock'/></div><p>{this.state.date_joined}</p>
+                <div className='justify-content-center'><FontAwesomeIcon icon={faClock}/></div><p>{this.state.date_joined}</p>
                 </Col>
             </Row>
 

@@ -27,10 +27,8 @@ class LoadFavorites extends React.Component{
             method:'GET',
             headers:{'Content-type':'application/json'},
             };
-
             const resp = await fetch('/api/favorites',options);
             const data = await resp.json();
-            console.log(data);
             this.setState({favorites:data.favorites});
             this.props.hide();
             }
