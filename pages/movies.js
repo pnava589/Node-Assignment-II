@@ -83,7 +83,7 @@ class Movies extends React.Component{
             return(
                 <Layout show={this.state.show}>
                     <Filter filterFunction={this.getFilteredMovies}/>
-                    <LoadFavorites refresh={this.getFavorites}/>
+                    <LoadFavorites hide={this.hide} show={this.show} refresh={this.getFavorites}/>
                     <Sort sortBy={this.sortBy}></Sort>
                     <MoviesList show={this.show} movies={this.state.movies} getFavorites={this.getFavorites} sortBy={this.sortBy}/>
                 </Layout>

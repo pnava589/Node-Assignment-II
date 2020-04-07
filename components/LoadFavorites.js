@@ -18,6 +18,7 @@ class LoadFavorites extends React.Component{
     
      getFavorites=async()=>{
         try{
+            this.props.show();
             const options ={
             method:'GET',
             headers:{'Content-type':'application/json'},
@@ -27,7 +28,7 @@ class LoadFavorites extends React.Component{
             const data = await resp.json();
             console.log(data);
             this.setState({favorites:data.favorites});
-            
+            this.props.hide();
             }
             catch(err){
                 console.log('fecth error: '+err);
