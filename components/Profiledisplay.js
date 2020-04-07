@@ -4,9 +4,6 @@ import fetch from 'isomorphic-unfetch';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 
-
-
-
 class Profile extends React.Component{
     constructor(props){
         super(props);
@@ -54,7 +51,7 @@ class Profile extends React.Component{
             <Image src={this.state.img} className='rounded-circle' style={{zIndex:4,position:'absolute',top:'15%'}}/>
             </Row>
             <Jumbotron style={{backgroundImage: `url(/chairs.jpg)`,backgroundSize: 'cover',position:'relative'}}>
-            <div style={{zIndex:1,position:'absolute',backgroundColor:'#2d6184B3',top:'0',bottom:'0',left:'0',right:'0'}}></div>
+            <div style={{zIndex:1,position:'absolute'}}></div>
             </Jumbotron>
             
             <Modal.Body className='mt-4'>
