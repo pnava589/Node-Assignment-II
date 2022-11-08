@@ -35,7 +35,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "mongodb": "^3.5.5",
     "mongoose": "^5.9.5",
-    "next": "^9.3.4",
+    "next": "^13.0.2",
     "npm": "^6.14.4",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
